@@ -1,0 +1,21 @@
+{
+  "name": "@trash-streamers/contracts",
+  "version": "1.0.0",
+  "scripts": {
+    "generate": "protoc -I ./proto ./proto/*.proto --ts_proto_out=./gen/ts --ts_proto_opt=nestJs=true,package=omit"
+  },
+  "files": [
+    "dist",
+    "proto",
+    "gen"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Protobuf definitions and generated TypeScript types",
+  "dependencies": {
+    "@nestjs/microservices": "^11.1.11",
+    "rxjs": "^7.8.2",
+    "ts-proto": "^2.10.1"
+  }
+}
