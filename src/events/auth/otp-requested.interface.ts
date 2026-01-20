@@ -1,5 +1,7 @@
+import { AuthType } from "../../../gen/ts/auth"
+
 export interface OtpRequestedEvent {
     identifier: string
-    type: string
+    type: AuthType
     code: string
 }
