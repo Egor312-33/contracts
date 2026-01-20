@@ -1,8 +1,8 @@
 {
   "name": "@trash-streamers/contracts",
-  "version": "1.1.3",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "version": "1.1.4",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "generate": "protoc -I ./proto ./proto/*.proto --ts_proto_out=./gen/ts --ts_proto_opt=nestJs=true,package=omit"
