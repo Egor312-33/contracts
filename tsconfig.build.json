@@ -3,11 +3,10 @@
     "compilerOptions": {
         "declaration": true,
         "outDir": "./dist",
-        "rootDir": "."
+        "rootDir": "./src"
     },
     "include": [
-        "src/**/*",
-        "gen/**/*"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules",

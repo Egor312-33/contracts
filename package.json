@@ -1,16 +1,15 @@
 {
   "name": "@trash-streamers/contracts",
-  "version": "1.1.4",
-  "main": "./dist/src/index.js",
-  "types": "./dist/src/index.d.ts",
+  "version": "1.1.5",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "generate": "protoc -I ./proto ./proto/*.proto --ts_proto_out=./gen/ts --ts_proto_opt=nestJs=true,package=omit"
+    "generate": "protoc -I ./proto ./proto/*.proto --ts_proto_out=./src/gen/ts --ts_proto_opt=nestJs=true,package=omit"
   },
   "files": [
     "dist",
-    "proto",
-    "gen"
+    "proto"
   ],
   "publishConfig": {
     "access": "public"
