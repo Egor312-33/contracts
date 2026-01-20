@@ -10,7 +10,7 @@ service AuthService {
 
 message  SendOtpRequest{
   string identifier = 1;
-  string type = 2;
+  AuthType type = 2;
 }
 
 message SendOtpResponse {
@@ -19,7 +19,7 @@ message SendOtpResponse {
 
 message VerifyOtpRequest {
 	string identifier = 1;
-	string type = 2;
+	AuthType type = 2;
 	string code = 3;
 }
 
@@ -35,4 +35,9 @@ message RefreshRequest {
 message RefreshResponse {
 	string access_token = 1;
 	string refresh_token = 2;
+}
+
+enum AuthType {
+	PHONE = 0;
+	EMAIL = 1;
 }
