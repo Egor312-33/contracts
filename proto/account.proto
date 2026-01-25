@@ -17,12 +17,7 @@ message GetAccountRequest {
 }
 
 message GetAccountResponse {
-	string id = 1;
-	string phone = 2;
-	string email = 3;
-	bool is_phone_verified = 4;
-	bool is_email_verified = 5;
-	Role role = 6;
+	Account account = 1;
 }
 
 message InitEmailChangeRequest {
@@ -66,4 +61,14 @@ message ConfirmPhoneChangeResponse {
 enum Role {
 	USER = 0;
 	ADMIN = 1;
+}
+
+message  Account {
+	string id = 1;
+	string phone = 2;
+	string email = 3;
+	bool is_phone_verified = 4;
+	bool is_email_verified = 5;
+	Role role = 6;
+
 }
