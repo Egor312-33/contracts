@@ -21,12 +21,7 @@ export interface GetAccountRequest {
 }
 
 export interface GetAccountResponse {
-  id: string;
-  phone: string;
-  email: string;
-  isPhoneVerified: boolean;
-  isEmailVerified: boolean;
-  role: Role;
+  account: Account | undefined;
 }
 
 export interface InitEmailChangeRequest {
@@ -65,6 +60,15 @@ export interface ConfirmPhoneChangeRequest {
 
 export interface ConfirmPhoneChangeResponse {
   ok: boolean;
+}
+
+export interface Account {
+  id: string;
+  phone: string;
+  email: string;
+  isPhoneVerified: boolean;
+  isEmailVerified: boolean;
+  role: Role;
 }
 
 export const ACCOUNT_V1_PACKAGE_NAME = "account.v1";

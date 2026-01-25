@@ -18,6 +18,14 @@ export interface GetMeResponse {
   user: User | undefined;
 }
 
+export interface GetUsersRequest {
+  ids: string[];
+}
+
+export interface GetUsersResponse {
+  users: User[];
+}
+
 export interface CreateUserRequest {
   id: string;
 }
@@ -39,8 +47,6 @@ export interface PatchUserResponse {
 export interface User {
   id: string;
   name?: string | undefined;
-  phone?: string | undefined;
-  email?: string | undefined;
   avatar?: string | undefined;
 }
 
@@ -49,6 +55,8 @@ export const USERS_V1_PACKAGE_NAME = "users.v1";
 export interface UsersServiceClient {
   getMe(request: GetMeRequest): Observable<GetMeResponse>;
 
+  getUsers(request: GetUsersRequest): Observable<GetUsersResponse>;
+
   createUser(request: CreateUserRequest): Observable<CreateUserResponse>;
 
   patchUser(request: PatchUserRequest): Observable<PatchUserResponse>;
@@ -56,6 +64,8 @@ export interface UsersServiceClient {
 
 export interface UsersServiceController {
   getMe(request: GetMeRequest): Promise<GetMeResponse> | Observable<GetMeResponse> | GetMeResponse;
+
+  getUsers(request: GetUsersRequest): Promise<GetUsersResponse> | Observable<GetUsersResponse> | GetUsersResponse;
 
   createUser(
     request: CreateUserRequest,
@@ -66,7 +76,7 @@ export interface UsersServiceController {
 
 export function UsersServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["getMe", "createUser", "patchUser"];
+    const grpcMethods: string[] = ["getMe", "getUsers", "createUser", "patchUser"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("UsersService", method)(constructor.prototype[method], method, descriptor);
