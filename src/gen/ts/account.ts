@@ -69,6 +69,11 @@ export interface Account {
   isPhoneVerified: boolean;
   isEmailVerified: boolean;
   role: Role;
+  user: User | undefined;
+}
+
+export interface User {
+  id: string;
 }
 
 export const ACCOUNT_V1_PACKAGE_NAME = "account.v1";
