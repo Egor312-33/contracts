@@ -62,6 +62,14 @@ export interface ConfirmPhoneChangeResponse {
   ok: boolean;
 }
 
+export interface GetAccountsRequest {
+  ids: string[];
+}
+
+export interface GetAccountsResponse {
+  accounts: Account[];
+}
+
 export interface Account {
   id: string;
   phone: string;
@@ -81,6 +89,8 @@ export const ACCOUNT_V1_PACKAGE_NAME = "account.v1";
 export interface AccountServiceClient {
   getAccount(request: GetAccountRequest): Observable<GetAccountResponse>;
 
+  getAccounts(request: GetAccountsRequest): Observable<GetAccountsResponse>;
+
   initEmailChange(request: InitEmailChangeRequest): Observable<InitEmailChangeResponse>;
 
   confirmEmailChange(request: ConfirmEmailChangeRequest): Observable<ConfirmEmailChangeResponse>;
@@ -94,6 +104,10 @@ export interface AccountServiceController {
   getAccount(
     request: GetAccountRequest,
   ): Promise<GetAccountResponse> | Observable<GetAccountResponse> | GetAccountResponse;
+
+  getAccounts(
+    request: GetAccountsRequest,
+  ): Promise<GetAccountsResponse> | Observable<GetAccountsResponse> | GetAccountsResponse;
 
   initEmailChange(
     request: InitEmailChangeRequest,
@@ -116,6 +130,7 @@ export function AccountServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = [
       "getAccount",
+      "getAccounts",
       "initEmailChange",
       "confirmEmailChange",
       "initPhoneChange",
