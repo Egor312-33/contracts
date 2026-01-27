@@ -7,6 +7,7 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
+import { User } from "./users";
 
 export const protobufPackage = "account.v1";
 
@@ -78,10 +79,6 @@ export interface Account {
   isEmailVerified: boolean;
   role: Role;
   user: User | undefined;
-}
-
-export interface User {
-  id: string;
 }
 
 export const ACCOUNT_V1_PACKAGE_NAME = "account.v1";
