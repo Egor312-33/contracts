@@ -1,7 +1,7 @@
-import { join } from 'path'
+
 
 export const PROTO_PATHS = {
-    AUTH: join(__dirname, '../../proto/auth.proto'),
-    ACCOUNT: join(__dirname, '../../proto/account.proto'),
-    USERS: join(__dirname, '../../proto/users.proto')
+    AUTH: require.resolve('@trash-streamers/contracts/proto/auth.proto'),
+    ACCOUNT: require.resolve('@trash-streamers/contracts/proto/account.proto'),
+    USERS: require.resolve('@trash-streamers/contracts/proto/users.proto')
 } as const
