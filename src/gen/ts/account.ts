@@ -7,6 +7,7 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
+import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "account.v1";
 
@@ -78,6 +79,8 @@ export interface Account {
   isEmailVerified: boolean;
   role: Role;
   userId: string;
+  createdAt: Timestamp | undefined;
+  updatedAt: Timestamp | undefined;
 }
 
 export const ACCOUNT_V1_PACKAGE_NAME = "account.v1";
