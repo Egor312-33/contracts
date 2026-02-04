@@ -46,8 +46,9 @@ export interface PatchUserResponse {
 
 export interface User {
   id: string;
-  name?: string | undefined;
+  userName?: string | undefined;
   avatar?: string | undefined;
+  displayName?: string | undefined;
 }
 
 export const USERS_V1_PACKAGE_NAME = "users.v1";
