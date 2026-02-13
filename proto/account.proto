@@ -77,8 +77,8 @@ message  Account {
 	string email = 3;
 	bool is_phone_verified = 4;
 	bool is_email_verified = 5;
-	Role role = 6;
-	string user_id = 7;
+	string user_id = 6;
+	Role role = 7;
 	google.protobuf.Timestamp created_at = 8;
   	google.protobuf.Timestamp updated_at = 9;
 }

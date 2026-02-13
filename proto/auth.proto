@@ -36,7 +36,6 @@ message RefreshResponse {
 	string access_token = 1;
 	string refresh_token = 2;
 }
-
 enum AuthType {
 	PHONE = 0;
 	EMAIL = 1;
