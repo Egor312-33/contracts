@@ -77,8 +77,8 @@ export interface Account {
   email: string;
   isPhoneVerified: boolean;
   isEmailVerified: boolean;
-  userId: string;
   role: Role;
+  userId: string;
   createdAt: Timestamp | undefined;
   updatedAt: Timestamp | undefined;
 }
