@@ -1,7 +1,9 @@
+import { join } from "path";
 
+const ROOT_PATH = join(process.cwd(), "../../../../contracts/proto");
 
 export const PROTO_PATHS = {
-    AUTH: require.resolve('@trash-streamers/contracts/proto/auth.proto'),
-    ACCOUNT: require.resolve('@trash-streamers/contracts/proto/account.proto'),
-    USERS: require.resolve('@trash-streamers/contracts/proto/users.proto')
-} as const
+  AUTH: join(ROOT_PATH, "auth.proto"),
+  ACCOUNT: join(ROOT_PATH, "account.proto"),
+  USERS: join(ROOT_PATH, "users.proto"),
+} as const;
