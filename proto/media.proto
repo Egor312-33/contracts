@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package media.v1;
+
+service MediaService {
+  rpc UploadImage (UploadImageRequest) returns (UploadImageResponse);
+  rpc GetImage (GetImageRequest) returns (GetImageResponse);
+  rpc DeleteAvatarProfile (DeleteImageRequest) returns (DeleteImageResponse);
+}
+
+message UploadImageRequest {
+  string file_name = 1;
+  Folder folder = 2;
+  string content_type = 3;
+  bytes data = 4;
+  optional int32 resize_width = 5;
+  optional int32 resize_height = 6;
+}
+
+message UploadImageResponse {
+  string key = 1;
+}
+
+message GetImageRequest {
+  string key = 1;
+}
+
+message GetImageResponse {
+  bytes data = 1;
+  string content_type = 2;
+}
+
+message DeleteImageRequest {
+  string key = 1;
+}
+
+message DeleteImageResponse {
+  bool ok = 1;
+}
+
+enum Folder {
+    AVATAR = 0;
+    THUMBNAIL = 1;
+}
