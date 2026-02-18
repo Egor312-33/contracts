@@ -1,1 +1,1 @@
-export * from "./upload-requsted.interface";
+export * from "./avatar-requsted.interface";
