@@ -1,6 +1,6 @@
 import { join } from "path";
 
-const ROOT_PATH = join(__dirname, "../../../contracts/proto");
+const ROOT_PATH = join(__dirname, "../../../../contracts/proto");
 
 export const PROTO_PATHS = {
   AUTH: join(ROOT_PATH, "auth.proto"),
