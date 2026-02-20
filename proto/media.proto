@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package media.v1;
 
+import "google/protobuf/timestamp.proto";
 service MediaService {
   rpc UploadImage (UploadImageRequest) returns (UploadImageResponse);
   rpc GetImage (GetImageRequest) returns (GetImageResponse);
@@ -19,6 +20,7 @@ message UploadImageRequest {
 
 message UploadImageResponse {
   string key = 1;
+  google.protobuf.Timestamp updated_at = 2;
 }
 
 message GetImageRequest {
