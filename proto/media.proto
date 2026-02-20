@@ -6,7 +6,6 @@ import "google/protobuf/timestamp.proto";
 service MediaService {
   rpc UploadImage (UploadImageRequest) returns (UploadImageResponse);
   rpc GetImage (GetImageRequest) returns (GetImageResponse);
-  rpc DeleteAvatarProfile (DeleteImageRequest) returns (DeleteImageResponse);
 }
 
 message UploadImageRequest {
@@ -30,14 +29,6 @@ message GetImageRequest {
 message GetImageResponse {
   bytes data = 1;
   string content_type = 2;
-}
-
-message DeleteImageRequest {
-  string key = 1;
-}
-
-message DeleteImageResponse {
-  bool ok = 1;
 }
 
 enum Folder {

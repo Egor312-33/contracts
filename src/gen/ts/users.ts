@@ -45,6 +45,15 @@ export interface PatchUserResponse {
   ok: boolean;
 }
 
+export interface DeleteImageRequest {
+  userId: string;
+  key: string;
+}
+
+export interface DeleteImageResponse {
+  ok: boolean;
+}
+
 export interface User {
   id: string;
   userName?: string | undefined;
@@ -73,6 +82,8 @@ export interface UsersServiceClient {
   createUser(request: CreateUserRequest): Observable<CreateUserResponse>;
 
   patchUser(request: PatchUserRequest): Observable<PatchUserResponse>;
+
+  deleteAvatarProfile(request: DeleteImageRequest): Observable<DeleteImageResponse>;
 }
 
 export interface UsersServiceController {
@@ -85,11 +96,15 @@ export interface UsersServiceController {
   ): Promise<CreateUserResponse> | Observable<CreateUserResponse> | CreateUserResponse;
 
   patchUser(request: PatchUserRequest): Promise<PatchUserResponse> | Observable<PatchUserResponse> | PatchUserResponse;
+
+  deleteAvatarProfile(
+    request: DeleteImageRequest,
+  ): Promise<DeleteImageResponse> | Observable<DeleteImageResponse> | DeleteImageResponse;
 }
 
 export function UsersServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["getMe", "getUsers", "createUser", "patchUser"];
+    const grpcMethods: string[] = ["getMe", "getUsers", "createUser", "patchUser", "deleteAvatarProfile"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("UsersService", method)(constructor.prototype[method], method, descriptor);

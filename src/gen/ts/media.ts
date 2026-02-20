@@ -40,14 +40,6 @@ export interface GetImageResponse {
   contentType: string;
 }
 
-export interface DeleteImageRequest {
-  key: string;
-}
-
-export interface DeleteImageResponse {
-  ok: boolean;
-}
-
 export const MEDIA_V1_PACKAGE_NAME = "media.v1";
 
 wrappers[".google.protobuf.Timestamp"] = {
@@ -63,8 +55,6 @@ export interface MediaServiceClient {
   uploadImage(request: UploadImageRequest): Observable<UploadImageResponse>;
 
   getImage(request: GetImageRequest): Observable<GetImageResponse>;
-
-  deleteAvatarProfile(request: DeleteImageRequest): Observable<DeleteImageResponse>;
 }
 
 export interface MediaServiceController {
@@ -73,15 +63,11 @@ export interface MediaServiceController {
   ): Promise<UploadImageResponse> | Observable<UploadImageResponse> | UploadImageResponse;
 
   getImage(request: GetImageRequest): Promise<GetImageResponse> | Observable<GetImageResponse> | GetImageResponse;
-
-  deleteAvatarProfile(
-    request: DeleteImageRequest,
-  ): Promise<DeleteImageResponse> | Observable<DeleteImageResponse> | DeleteImageResponse;
 }
 
 export function MediaServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["uploadImage", "getImage", "deleteAvatarProfile"];
+    const grpcMethods: string[] = ["uploadImage", "getImage"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
