@@ -4,4 +4,5 @@ export interface AvatarRequestedEvent {
   identifier: string;
   folder: Folder;
   url: string;
+  updatedAt: string;
 }
