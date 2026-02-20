@@ -10,7 +10,7 @@ service UsersService {
 	rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
 	rpc PatchUser (PatchUserRequest) returns (PatchUserResponse);
 
-	 rpc DeleteAvatarProfile (DeleteImageRequest) returns (DeleteImageResponse);
+	 rpc DeleteAvatarProfile (DeleteAvatarProfileRequest) returns (DeleteAvatarProfileResponse);
 }
 
 message GetMeRequest {
@@ -47,12 +47,12 @@ message PatchUserResponse {
   bool ok = 1;
 }
 
-message DeleteImageRequest {
+message DeleteAvatarProfileRequest {
   string user_id = 1;
   string key = 2;
 }
 
-message DeleteImageResponse {
+message DeleteAvatarProfileResponse {
   bool ok = 1;
 }
 message User {

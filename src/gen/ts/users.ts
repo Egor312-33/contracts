@@ -45,12 +45,12 @@ export interface PatchUserResponse {
   ok: boolean;
 }
 
-export interface DeleteImageRequest {
+export interface DeleteAvatarProfileRequest {
   userId: string;
   key: string;
 }
 
-export interface DeleteImageResponse {
+export interface DeleteAvatarProfileResponse {
   ok: boolean;
 }
 
@@ -83,7 +83,7 @@ export interface UsersServiceClient {
 
   patchUser(request: PatchUserRequest): Observable<PatchUserResponse>;
 
-  deleteAvatarProfile(request: DeleteImageRequest): Observable<DeleteImageResponse>;
+  deleteAvatarProfile(request: DeleteAvatarProfileRequest): Observable<DeleteAvatarProfileResponse>;
 }
 
 export interface UsersServiceController {
@@ -98,8 +98,8 @@ export interface UsersServiceController {
   patchUser(request: PatchUserRequest): Promise<PatchUserResponse> | Observable<PatchUserResponse> | PatchUserResponse;
 
   deleteAvatarProfile(
-    request: DeleteImageRequest,
-  ): Promise<DeleteImageResponse> | Observable<DeleteImageResponse> | DeleteImageResponse;
+    request: DeleteAvatarProfileRequest,
+  ): Promise<DeleteAvatarProfileResponse> | Observable<DeleteAvatarProfileResponse> | DeleteAvatarProfileResponse;
 }
 
 export function UsersServiceControllerMethods() {
