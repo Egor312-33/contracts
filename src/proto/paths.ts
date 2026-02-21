@@ -1,6 +1,9 @@
 import { join } from "path";
 
-const ROOT_PATH = join(__dirname, "../../../@trash-streamers/contracts/proto");
+const ROOT_PATH = join(
+  process.cwd(),
+  "node_modules/@trash-streamers/contracts/proto",
+);
 
 export const PROTO_PATHS = {
   AUTH: join(ROOT_PATH, "auth.proto"),
