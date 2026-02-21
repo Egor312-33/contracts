@@ -1,4 +1,4 @@
-import { join } from "path";
+import { dirname, join } from "path";
 
 const ROOT_PATH = join(
   dirname(require.resolve("@trash-streamers/contracts/package.json")),
