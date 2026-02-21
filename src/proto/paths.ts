@@ -1,9 +1,6 @@
-import { dirname, join } from "path";
+import { join } from "path";
 
-const ROOT_PATH = join(
-  dirname(require.resolve("@trash-streamers/contracts/package.json")),
-  "proto",
-);
+const ROOT_PATH = join(__dirname, "../../../contracts/proto");
 
 export const PROTO_PATHS = {
   AUTH: join(ROOT_PATH, "auth.proto"),
