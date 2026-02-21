@@ -1,8 +1,8 @@
 import { join } from "path";
 
 const ROOT_PATH = join(
-  process.cwd(),
-  "node_modules/@trash-streamers/contracts/proto",
+  dirname(require.resolve("@trash-streamers/contracts/package.json")),
+  "proto",
 );
 
 export const PROTO_PATHS = {
