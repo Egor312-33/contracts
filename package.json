@@ -1,6 +1,6 @@
 {
   "name": "@trash-streamers/contracts",
-  "version": "1.1.41",
+  "version": "1.1.42",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {

@@ -6,6 +6,8 @@ import "google/protobuf/timestamp.proto";
 service MediaService {
   rpc UploadImage (UploadImageRequest) returns (UploadImageResponse);
   rpc GetImage (GetImageRequest) returns (GetImageResponse);
+
+  rpc GetVideoUploadTicket (GetVideoUploadTicketRequest) returns (GetVideoUploadTicketResponse);
 }
 
 message UploadImageRequest {
@@ -31,6 +33,15 @@ message GetImageResponse {
   string content_type = 2;
 }
 
+message GetVideoUploadTicketRequest {
+  string file_name = 1;
+  string content_type = 2;
+}
+
+message GetVideoUploadTicketResponse {
+  string upload_url = 1;
+  string file_key = 2;
+}
 enum Folder {
     AVATAR = 0;
     THUMBNAIL = 1;

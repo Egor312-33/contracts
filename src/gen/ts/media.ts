@@ -40,6 +40,16 @@ export interface GetImageResponse {
   contentType: string;
 }
 
+export interface GetVideoUploadTicketRequest {
+  fileName: string;
+  contentType: string;
+}
+
+export interface GetVideoUploadTicketResponse {
+  uploadUrl: string;
+  fileKey: string;
+}
+
 export const MEDIA_V1_PACKAGE_NAME = "media.v1";
 
 wrappers[".google.protobuf.Timestamp"] = {
@@ -55,6 +65,8 @@ export interface MediaServiceClient {
   uploadImage(request: UploadImageRequest): Observable<UploadImageResponse>;
 
   getImage(request: GetImageRequest): Observable<GetImageResponse>;
+
+  getVideoUploadTicket(request: GetVideoUploadTicketRequest): Observable<GetVideoUploadTicketResponse>;
 }
 
 export interface MediaServiceController {
@@ -63,11 +75,15 @@ export interface MediaServiceController {
   ): Promise<UploadImageResponse> | Observable<UploadImageResponse> | UploadImageResponse;
 
   getImage(request: GetImageRequest): Promise<GetImageResponse> | Observable<GetImageResponse> | GetImageResponse;
+
+  getVideoUploadTicket(
+    request: GetVideoUploadTicketRequest,
+  ): Promise<GetVideoUploadTicketResponse> | Observable<GetVideoUploadTicketResponse> | GetVideoUploadTicketResponse;
 }
 
 export function MediaServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["uploadImage", "getImage"];
+    const grpcMethods: string[] = ["uploadImage", "getImage", "getVideoUploadTicket"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("MediaService", method)(constructor.prototype[method], method, descriptor);
