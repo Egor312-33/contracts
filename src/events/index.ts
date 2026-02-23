@@ -2,3 +2,4 @@ export * from "./auth";
 export * from "./media";
 export * from "./users";
 export * from "./video";
+export * from "./messages";
