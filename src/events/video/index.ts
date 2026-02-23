@@ -1,1 +1,1 @@
-export * from "./video-downloaded";
+export * from "./downloaded";
