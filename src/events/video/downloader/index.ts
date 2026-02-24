@@ -1,1 +1,1 @@
-export * from "./video-encoder";
+export * from "./video-encoding-director";

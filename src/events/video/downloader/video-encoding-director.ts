@@ -1,4 +1,4 @@
-export interface VideoEncoderEvent {
+export interface VideoEncodingDirectorEvent {
   videoId: string;
   location: string;
   videoContainer: string;
