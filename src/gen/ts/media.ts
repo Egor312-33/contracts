@@ -43,6 +43,7 @@ export interface GetImageResponse {
 export interface GetVideoUploadTicketRequest {
   fileName: string;
   contentType: string;
+  ownerId: string;
 }
 
 export interface GetVideoUploadTicketResponse {
