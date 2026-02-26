@@ -49,6 +49,7 @@ export interface GetVideoUploadTicketRequest {
 export interface GetVideoUploadTicketResponse {
   uploadUrl: string;
   fileKey: string;
+  videoId: string;
 }
 
 export const MEDIA_V1_PACKAGE_NAME = "media.v1";
