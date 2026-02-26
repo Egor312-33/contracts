@@ -42,6 +42,7 @@ message GetVideoUploadTicketRequest {
 message GetVideoUploadTicketResponse {
   string upload_url = 1;
   string file_key = 2;
+  string video_id = 3; 
 }
 enum Folder {
     AVATAR = 0;
