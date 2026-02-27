@@ -14,6 +14,7 @@ export interface ConfirmVideoUploadRequest {
   videoId: string;
   fileKey: string;
   contentType: string;
+  ownerId: string;
 }
 
 export interface ConfirmVideoUploadResponse {
