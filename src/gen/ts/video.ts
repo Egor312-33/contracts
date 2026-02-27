@@ -45,6 +45,14 @@ export interface GetAllVideosOwnerResponse {
   videos: Video[];
 }
 
+export interface PublicVideoBySlugRequest {
+  slug: string;
+}
+
+export interface PublicVideoBySlugResponce {
+  video: Video | undefined;
+}
+
 export interface Video {
   id: string;
   ownerId: string;
@@ -54,6 +62,7 @@ export interface Video {
   status: Status;
   slug: string;
   thumbnailUrl?: string | undefined;
+  durationSeconds?: string | undefined;
   path?: string | undefined;
   updatedAt: Date | undefined;
   createdAt: Date | undefined;
@@ -74,6 +83,8 @@ export interface VideoServiceClient {
   confirmVideoUpload(request: ConfirmVideoUploadRequest): Observable<ConfirmVideoUploadResponse>;
 
   getAllVideosOwner(request: GetAllVideosOwnerRequest): Observable<GetAllVideosOwnerResponse>;
+
+  publicVideoBySlug(request: PublicVideoBySlugRequest): Observable<PublicVideoBySlugResponce>;
 }
 
 export interface VideoServiceController {
@@ -84,11 +95,15 @@ export interface VideoServiceController {
   getAllVideosOwner(
     request: GetAllVideosOwnerRequest,
   ): Promise<GetAllVideosOwnerResponse> | Observable<GetAllVideosOwnerResponse> | GetAllVideosOwnerResponse;
+
+  publicVideoBySlug(
+    request: PublicVideoBySlugRequest,
+  ): Promise<PublicVideoBySlugResponce> | Observable<PublicVideoBySlugResponce> | PublicVideoBySlugResponce;
 }
 
 export function VideoServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["confirmVideoUpload", "getAllVideosOwner"];
+    const grpcMethods: string[] = ["confirmVideoUpload", "getAllVideosOwner", "publicVideoBySlug"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("VideoService", method)(constructor.prototype[method], method, descriptor);

@@ -5,7 +5,9 @@ package video.v1;
 import "google/protobuf/timestamp.proto";
 service VideoService {
     rpc ConfirmVideoUpload (ConfirmVideoUploadRequest) returns (ConfirmVideoUploadResponse);
+    
     rpc GetAllVideosOwner (GetAllVideosOwnerRequest) returns (GetAllVideosOwnerResponse);
+    rpc PublicVideoBySlug (PublicVideoBySlugRequest) returns (PublicVideoBySlugResponce);
 }
 
 message ConfirmVideoUploadRequest {
@@ -26,6 +28,14 @@ message GetAllVideosOwnerRequest {
 message GetAllVideosOwnerResponse {
   repeated Video videos = 1;
 }
+
+message PublicVideoBySlugRequest {
+  string slug = 1;
+}
+
+message PublicVideoBySlugResponce {
+  Video video = 1;
+}
 message Video {
 	string id = 1;
 	string owner_id = 2;
@@ -35,9 +45,10 @@ message Video {
   Status status= 6;
   string slug = 7;
   optional string thumbnail_url = 8;
-  optional string path = 9;
-  google.protobuf.Timestamp updated_at = 10;
-	google.protobuf.Timestamp created_at = 11;
+  optional string duration_seconds = 9;
+  optional string path = 10;
+  google.protobuf.Timestamp updated_at = 11;
+	google.protobuf.Timestamp created_at = 12;
 }
 
 enum Access {
