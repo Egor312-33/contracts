@@ -31,8 +31,8 @@ message Video {
 	string owner_id = 2;
   string title = 3;
 	optional string description = 4;
-  AccessType access = 5;
-  StatusType  status= 6;
+  Access access = 5;
+  Status status= 6;
   string slug = 7;
   optional string thumbnail_url = 8;
   optional string path = 9;
@@ -40,13 +40,13 @@ message Video {
 	google.protobuf.Timestamp created_at = 11;
 }
 
-enum AccessType {
+enum Access {
   PUBLIC = 0;
   PRIVATE = 1;
   BYLINK = 2;
 }
 
-enum StatusType {
+enum Status {
   PENDING = 0;
   PROCESSING = 1;
   READY = 2;

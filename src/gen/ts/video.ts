@@ -11,14 +11,14 @@ import { Observable } from "rxjs";
 
 export const protobufPackage = "video.v1";
 
-export enum AccessType {
+export enum Access {
   PUBLIC = "PUBLIC",
   PRIVATE = "PRIVATE",
   BYLINK = "BYLINK",
   UNRECOGNIZED = "UNRECOGNIZED",
 }
 
-export enum StatusType {
+export enum Status {
   PENDING = "PENDING",
   PROCESSING = "PROCESSING",
   READY = "READY",
@@ -50,8 +50,8 @@ export interface Video {
   ownerId: string;
   title: string;
   description?: string | undefined;
-  access: AccessType;
-  status: StatusType;
+  access: Access;
+  status: Status;
   slug: string;
   thumbnailUrl?: string | undefined;
   path?: string | undefined;
