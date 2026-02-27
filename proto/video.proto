@@ -10,6 +10,7 @@ message ConfirmVideoUploadRequest {
   string video_id = 1; 
   string file_key = 2; 
   string content_type = 3; 
+  string owner_id = 4;
 }
 
 

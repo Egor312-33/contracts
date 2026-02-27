@@ -5,6 +5,7 @@ export interface VideoEncodingRequestedEvent {
   location: string;
   videoContainer: string;
   encoding: EncodingArtifact;
+  ownerId: string;
 }
 
 export interface EncodingArtifact {
