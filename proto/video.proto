@@ -2,8 +2,10 @@ syntax = "proto3";
 
 package video.v1;
 
+import "google/protobuf/timestamp.proto";
 service VideoService {
     rpc ConfirmVideoUpload (ConfirmVideoUploadRequest) returns (ConfirmVideoUploadResponse);
+    rpc GetAllVideosOwner (GetAllVideosOwnerRequest) returns (GetAllVideosOwnerResponse);
 }
 
 message ConfirmVideoUploadRequest {
@@ -13,7 +15,40 @@ message ConfirmVideoUploadRequest {
   string owner_id = 4;
 }
 
-
 message ConfirmVideoUploadResponse {
   bool success = 1;
+}
+
+message GetAllVideosOwnerRequest {
+  string owner_id = 1;
+}
+
+message GetAllVideosOwnerResponse {
+  repeated Video videos = 1;
+}
+message Video {
+	string id = 1;
+	string owner_id = 2;
+  string title = 3;
+	optional string description = 4;
+  AccessType access = 5;
+  StatusType  status= 6;
+  string slug = 7;
+  optional string thumbnail_url = 8;
+  optional string path = 9;
+  google.protobuf.Timestamp updated_at = 10;
+	google.protobuf.Timestamp created_at = 11;
+}
+
+enum AccessType {
+  PUBLIC = 0;
+  PRIVATE = 1;
+  BYLINK = 2;
+}
+
+enum StatusType {
+  PENDING = 0;
+  PROCESSING = 1;
+  READY = 2;
+  FAILED = 3;
 }

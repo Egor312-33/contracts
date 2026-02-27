@@ -6,9 +6,25 @@
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 
 export const protobufPackage = "video.v1";
+
+export enum AccessType {
+  PUBLIC = "PUBLIC",
+  PRIVATE = "PRIVATE",
+  BYLINK = "BYLINK",
+  UNRECOGNIZED = "UNRECOGNIZED",
+}
+
+export enum StatusType {
+  PENDING = "PENDING",
+  PROCESSING = "PROCESSING",
+  READY = "READY",
+  FAILED = "FAILED",
+  UNRECOGNIZED = "UNRECOGNIZED",
+}
 
 export interface ConfirmVideoUploadRequest {
   videoId: string;
@@ -21,21 +37,58 @@ export interface ConfirmVideoUploadResponse {
   success: boolean;
 }
 
+export interface GetAllVideosOwnerRequest {
+  ownerId: string;
+}
+
+export interface GetAllVideosOwnerResponse {
+  videos: Video[];
+}
+
+export interface Video {
+  id: string;
+  ownerId: string;
+  title: string;
+  description?: string | undefined;
+  access: AccessType;
+  status: StatusType;
+  slug: string;
+  thumbnailUrl?: string | undefined;
+  path?: string | undefined;
+  updatedAt: Date | undefined;
+  createdAt: Date | undefined;
+}
+
 export const VIDEO_V1_PACKAGE_NAME = "video.v1";
+
+wrappers[".google.protobuf.Timestamp"] = {
+  fromObject(value: Date) {
+    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
+  },
+  toObject(message: { seconds: number; nanos: number }) {
+    return new Date(message.seconds * 1000 + message.nanos / 1e6);
+  },
+} as any;
 
 export interface VideoServiceClient {
   confirmVideoUpload(request: ConfirmVideoUploadRequest): Observable<ConfirmVideoUploadResponse>;
+
+  getAllVideosOwner(request: GetAllVideosOwnerRequest): Observable<GetAllVideosOwnerResponse>;
 }
 
 export interface VideoServiceController {
   confirmVideoUpload(
     request: ConfirmVideoUploadRequest,
   ): Promise<ConfirmVideoUploadResponse> | Observable<ConfirmVideoUploadResponse> | ConfirmVideoUploadResponse;
+
+  getAllVideosOwner(
+    request: GetAllVideosOwnerRequest,
+  ): Promise<GetAllVideosOwnerResponse> | Observable<GetAllVideosOwnerResponse> | GetAllVideosOwnerResponse;
 }
 
 export function VideoServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["confirmVideoUpload"];
+    const grpcMethods: string[] = ["confirmVideoUpload", "getAllVideosOwner"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("VideoService", method)(constructor.prototype[method], method, descriptor);
