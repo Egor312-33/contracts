@@ -8,6 +8,7 @@ service VideoService {
     
     rpc GetAllVideosOwner (GetAllVideosOwnerRequest) returns (GetAllVideosOwnerResponse);
     rpc PublicVideoBySlug (PublicVideoBySlugRequest) returns (PublicVideoBySlugResponce);
+    rpc SettingVideoBySlug (SettingVideoBySlugRequest) returns (SettingVideoBySlugResponce);
 }
 
 message ConfirmVideoUploadRequest {
@@ -35,6 +36,15 @@ message PublicVideoBySlugRequest {
 
 message PublicVideoBySlugResponce {
   Video video = 1;
+}
+
+message SettingVideoBySlugRequest {
+  string slug = 1;
+  string owner_id= 2; 
+}
+
+message  SettingVideoBySlugResponce{
+  Video video =1;
 }
 message Video {
 	string id = 1;
