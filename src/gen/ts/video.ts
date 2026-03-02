@@ -62,6 +62,17 @@ export interface SettingVideoBySlugResponce {
   video: Video | undefined;
 }
 
+export interface UpdateSettingsVideoRequst {
+  slug: string;
+  ownerId: string;
+  video: Video | undefined;
+  updateMask: string[] | undefined;
+}
+
+export interface UpdateSettingsVideoResponse {
+  video: Video | undefined;
+}
+
 export interface Video {
   id: string;
   ownerId: string;
@@ -96,6 +107,8 @@ export interface VideoServiceClient {
   publicVideoBySlug(request: PublicVideoBySlugRequest): Observable<PublicVideoBySlugResponce>;
 
   settingVideoBySlug(request: SettingVideoBySlugRequest): Observable<SettingVideoBySlugResponce>;
+
+  updateSettingsVideo(request: UpdateSettingsVideoRequst): Observable<UpdateSettingsVideoResponse>;
 }
 
 export interface VideoServiceController {
@@ -114,6 +127,10 @@ export interface VideoServiceController {
   settingVideoBySlug(
     request: SettingVideoBySlugRequest,
   ): Promise<SettingVideoBySlugResponce> | Observable<SettingVideoBySlugResponce> | SettingVideoBySlugResponce;
+
+  updateSettingsVideo(
+    request: UpdateSettingsVideoRequst,
+  ): Promise<UpdateSettingsVideoResponse> | Observable<UpdateSettingsVideoResponse> | UpdateSettingsVideoResponse;
 }
 
 export function VideoServiceControllerMethods() {
@@ -123,6 +140,7 @@ export function VideoServiceControllerMethods() {
       "getAllVideosOwner",
       "publicVideoBySlug",
       "settingVideoBySlug",
+      "updateSettingsVideo",
     ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);

@@ -3,12 +3,14 @@ syntax = "proto3";
 package video.v1;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/field_mask.proto";
 service VideoService {
     rpc ConfirmVideoUpload (ConfirmVideoUploadRequest) returns (ConfirmVideoUploadResponse);
     
     rpc GetAllVideosOwner (GetAllVideosOwnerRequest) returns (GetAllVideosOwnerResponse);
     rpc PublicVideoBySlug (PublicVideoBySlugRequest) returns (PublicVideoBySlugResponce);
     rpc SettingVideoBySlug (SettingVideoBySlugRequest) returns (SettingVideoBySlugResponce);
+    rpc UpdateSettingsVideo (UpdateSettingsVideoRequst) returns (UpdateSettingsVideoResponse);
 }
 
 message ConfirmVideoUploadRequest {
@@ -45,6 +47,17 @@ message SettingVideoBySlugRequest {
 
 message  SettingVideoBySlugResponce{
   Video video =1;
+}
+
+message UpdateSettingsVideoRequst {
+  string slug = 1;
+  string owner_id = 2;
+  Video video = 3;
+  google.protobuf.FieldMask update_mask = 4;
+}
+
+message UpdateSettingsVideoResponse {
+  Video video = 1;
 }
 message Video {
 	string id = 1;
