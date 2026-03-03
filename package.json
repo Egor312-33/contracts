@@ -5,7 +5,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "generate": "protoc -I ./proto ./proto/*.proto --ts_proto_out=./src/gen/ts --ts_proto_opt=nestJs=true,useJsonWireFormat=true,package=omit,stringEnums=true"
+    "generate": "protoc -I ./proto ./proto/*.proto --ts_proto_out=./src/gen/ts --ts_proto_opt=nestJs=true,useJsonWireFormat=true,package=omit,stringEnums=true,useDate=true"
   },
   "files": [
     "dist",

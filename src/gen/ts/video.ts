@@ -6,8 +6,8 @@
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
-import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "video.v1";
 
@@ -88,11 +88,20 @@ export interface Video {
   thumbnailUrl?: string | undefined;
   durationSeconds?: string | undefined;
   path?: string | undefined;
-  updatedAt: Timestamp | undefined;
-  createdAt: Timestamp | undefined;
+  updatedAt: Date | undefined;
+  createdAt: Date | undefined;
 }
 
 export const VIDEO_V1_PACKAGE_NAME = "video.v1";
+
+wrappers[".google.protobuf.Timestamp"] = {
+  fromObject(value: Date) {
+    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
+  },
+  toObject(message: { seconds: number; nanos: number }) {
+    return new Date(message.seconds * 1000 + message.nanos / 1e6);
+  },
+} as any;
 
 export interface VideoServiceClient {
   confirmVideoUpload(request: ConfirmVideoUploadRequest): Observable<ConfirmVideoUploadResponse>;

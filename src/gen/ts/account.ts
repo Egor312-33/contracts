@@ -6,8 +6,8 @@
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
-import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "account.v1";
 
@@ -79,11 +79,20 @@ export interface Account {
   isEmailVerified: boolean;
   role: Role;
   userId: string;
-  createdAt: Timestamp | undefined;
-  updatedAt: Timestamp | undefined;
+  createdAt: Date | undefined;
+  updatedAt: Date | undefined;
 }
 
 export const ACCOUNT_V1_PACKAGE_NAME = "account.v1";
+
+wrappers[".google.protobuf.Timestamp"] = {
+  fromObject(value: Date) {
+    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
+  },
+  toObject(message: { seconds: number; nanos: number }) {
+    return new Date(message.seconds * 1000 + message.nanos / 1e6);
+  },
+} as any;
 
 export interface AccountServiceClient {
   getAccount(request: GetAccountRequest): Observable<GetAccountResponse>;
