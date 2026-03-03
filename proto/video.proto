@@ -53,11 +53,15 @@ message UpdateSettingsVideoRequst {
   string slug = 1;
   string owner_id = 2;
   Video video = 3;
-  google.protobuf.FieldMask update_mask = 4;
+  Mask update_mask = 4;
 }
 
 message UpdateSettingsVideoResponse {
   Video video = 1;
+}
+
+message Mask {
+  google.protobuf.FieldMask paths = 1;
 }
 message Video {
 	string id = 1;

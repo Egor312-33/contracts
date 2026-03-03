@@ -6,8 +6,8 @@
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
-import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
+import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "media.v1";
 
@@ -28,7 +28,7 @@ export interface UploadImageRequest {
 
 export interface UploadImageResponse {
   key: string;
-  updatedAt: Date | undefined;
+  updatedAt: Timestamp | undefined;
 }
 
 export interface GetImageRequest {
@@ -53,15 +53,6 @@ export interface GetVideoUploadTicketResponse {
 }
 
 export const MEDIA_V1_PACKAGE_NAME = "media.v1";
-
-wrappers[".google.protobuf.Timestamp"] = {
-  fromObject(value: Date) {
-    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
-  },
-  toObject(message: { seconds: number; nanos: number }) {
-    return new Date(message.seconds * 1000 + message.nanos / 1e6);
-  },
-} as any;
 
 export interface MediaServiceClient {
   uploadImage(request: UploadImageRequest): Observable<UploadImageResponse>;
