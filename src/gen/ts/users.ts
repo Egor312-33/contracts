@@ -74,6 +74,179 @@ wrappers[".google.protobuf.Timestamp"] = {
   },
 } as any;
 
+function createBaseGetMeRequest(): GetMeRequest {
+  return { id: "" };
+}
+
+export const GetMeRequest: MessageFns<GetMeRequest> = {
+  create<I extends Exact<DeepPartial<GetMeRequest>, I>>(base?: I): GetMeRequest {
+    return GetMeRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetMeRequest>, I>>(object: I): GetMeRequest {
+    const message = createBaseGetMeRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseGetMeResponse(): GetMeResponse {
+  return { user: undefined };
+}
+
+export const GetMeResponse: MessageFns<GetMeResponse> = {
+  create<I extends Exact<DeepPartial<GetMeResponse>, I>>(base?: I): GetMeResponse {
+    return GetMeResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetMeResponse>, I>>(object: I): GetMeResponse {
+    const message = createBaseGetMeResponse();
+    message.user = (object.user !== undefined && object.user !== null) ? User.fromPartial(object.user) : undefined;
+    return message;
+  },
+};
+
+function createBaseGetUsersRequest(): GetUsersRequest {
+  return { ids: [] };
+}
+
+export const GetUsersRequest: MessageFns<GetUsersRequest> = {
+  create<I extends Exact<DeepPartial<GetUsersRequest>, I>>(base?: I): GetUsersRequest {
+    return GetUsersRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetUsersRequest>, I>>(object: I): GetUsersRequest {
+    const message = createBaseGetUsersRequest();
+    message.ids = object.ids?.map((e) => e) || [];
+    return message;
+  },
+};
+
+function createBaseGetUsersResponse(): GetUsersResponse {
+  return { users: [] };
+}
+
+export const GetUsersResponse: MessageFns<GetUsersResponse> = {
+  create<I extends Exact<DeepPartial<GetUsersResponse>, I>>(base?: I): GetUsersResponse {
+    return GetUsersResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<GetUsersResponse>, I>>(object: I): GetUsersResponse {
+    const message = createBaseGetUsersResponse();
+    message.users = object.users?.map((e) => User.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseCreateUserRequest(): CreateUserRequest {
+  return { id: "" };
+}
+
+export const CreateUserRequest: MessageFns<CreateUserRequest> = {
+  create<I extends Exact<DeepPartial<CreateUserRequest>, I>>(base?: I): CreateUserRequest {
+    return CreateUserRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CreateUserRequest>, I>>(object: I): CreateUserRequest {
+    const message = createBaseCreateUserRequest();
+    message.id = object.id ?? "";
+    return message;
+  },
+};
+
+function createBaseCreateUserResponse(): CreateUserResponse {
+  return { ok: false };
+}
+
+export const CreateUserResponse: MessageFns<CreateUserResponse> = {
+  create<I extends Exact<DeepPartial<CreateUserResponse>, I>>(base?: I): CreateUserResponse {
+    return CreateUserResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<CreateUserResponse>, I>>(object: I): CreateUserResponse {
+    const message = createBaseCreateUserResponse();
+    message.ok = object.ok ?? false;
+    return message;
+  },
+};
+
+function createBasePatchUserRequest(): PatchUserRequest {
+  return { userId: "" };
+}
+
+export const PatchUserRequest: MessageFns<PatchUserRequest> = {
+  create<I extends Exact<DeepPartial<PatchUserRequest>, I>>(base?: I): PatchUserRequest {
+    return PatchUserRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<PatchUserRequest>, I>>(object: I): PatchUserRequest {
+    const message = createBasePatchUserRequest();
+    message.userId = object.userId ?? "";
+    message.name = object.name ?? undefined;
+    message.avatar = object.avatar ?? undefined;
+    return message;
+  },
+};
+
+function createBasePatchUserResponse(): PatchUserResponse {
+  return { ok: false };
+}
+
+export const PatchUserResponse: MessageFns<PatchUserResponse> = {
+  create<I extends Exact<DeepPartial<PatchUserResponse>, I>>(base?: I): PatchUserResponse {
+    return PatchUserResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<PatchUserResponse>, I>>(object: I): PatchUserResponse {
+    const message = createBasePatchUserResponse();
+    message.ok = object.ok ?? false;
+    return message;
+  },
+};
+
+function createBaseDeleteAvatarProfileRequest(): DeleteAvatarProfileRequest {
+  return { userId: "", key: "" };
+}
+
+export const DeleteAvatarProfileRequest: MessageFns<DeleteAvatarProfileRequest> = {
+  create<I extends Exact<DeepPartial<DeleteAvatarProfileRequest>, I>>(base?: I): DeleteAvatarProfileRequest {
+    return DeleteAvatarProfileRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteAvatarProfileRequest>, I>>(object: I): DeleteAvatarProfileRequest {
+    const message = createBaseDeleteAvatarProfileRequest();
+    message.userId = object.userId ?? "";
+    message.key = object.key ?? "";
+    return message;
+  },
+};
+
+function createBaseDeleteAvatarProfileResponse(): DeleteAvatarProfileResponse {
+  return { ok: false };
+}
+
+export const DeleteAvatarProfileResponse: MessageFns<DeleteAvatarProfileResponse> = {
+  create<I extends Exact<DeepPartial<DeleteAvatarProfileResponse>, I>>(base?: I): DeleteAvatarProfileResponse {
+    return DeleteAvatarProfileResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<DeleteAvatarProfileResponse>, I>>(object: I): DeleteAvatarProfileResponse {
+    const message = createBaseDeleteAvatarProfileResponse();
+    message.ok = object.ok ?? false;
+    return message;
+  },
+};
+
+function createBaseUser(): User {
+  return { id: "", updatedAt: undefined, createdAt: undefined };
+}
+
+export const User: MessageFns<User> = {
+  create<I extends Exact<DeepPartial<User>, I>>(base?: I): User {
+    return User.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<User>, I>>(object: I): User {
+    const message = createBaseUser();
+    message.id = object.id ?? "";
+    message.userName = object.userName ?? undefined;
+    message.avatar = object.avatar ?? undefined;
+    message.displayName = object.displayName ?? undefined;
+    message.updatedAt = object.updatedAt ?? undefined;
+    message.createdAt = object.createdAt ?? undefined;
+    return message;
+  },
+};
+
 export interface UsersServiceClient {
   getMe(request: GetMeRequest): Observable<GetMeResponse>;
 
@@ -118,3 +291,20 @@ export function UsersServiceControllerMethods() {
 }
 
 export const USERS_SERVICE_NAME = "UsersService";
+
+type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+
+export type DeepPartial<T> = T extends Builtin ? T
+  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
+  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+  : Partial<T>;
+
+type KeysOfUnion<T> = T extends T ? keyof T : never;
+export type Exact<P, I extends P> = P extends Builtin ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+export interface MessageFns<T> {
+  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
+  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
+}
