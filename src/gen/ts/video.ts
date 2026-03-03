@@ -66,15 +66,15 @@ export interface UpdateSettingsVideoRequst {
   slug: string;
   ownerId: string;
   video: Video | undefined;
-  updateMask: Mask | undefined;
+  updateMask: FieldMask | undefined;
 }
 
 export interface UpdateSettingsVideoResponse {
   video: Video | undefined;
 }
 
-export interface Mask {
-  paths: string[] | undefined;
+export interface FieldMask {
+  paths: string[];
 }
 
 export interface Video {

@@ -3,7 +3,7 @@ syntax = "proto3";
 package video.v1;
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/field_mask.proto";
+
 service VideoService {
     rpc ConfirmVideoUpload (ConfirmVideoUploadRequest) returns (ConfirmVideoUploadResponse);
     
@@ -53,16 +53,17 @@ message UpdateSettingsVideoRequst {
   string slug = 1;
   string owner_id = 2;
   Video video = 3;
-  Mask update_mask = 4;
+  FieldMask update_mask = 4;
 }
 
 message UpdateSettingsVideoResponse {
   Video video = 1;
 }
 
-message Mask {
-  google.protobuf.FieldMask paths = 1;
+message FieldMask {
+  repeated string paths = 1;
 }
+
 message Video {
 	string id = 1;
 	string owner_id = 2;
