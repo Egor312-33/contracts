@@ -65,7 +65,7 @@ export interface SettingVideoBySlugResponce {
 export interface UpdateSettingsVideoRequst {
   slug: string;
   ownerId: string;
-  video: Video | undefined;
+  video?: Video | undefined;
   updateMask: FieldMask | undefined;
 }
 
@@ -86,7 +86,7 @@ export interface Video {
   status: Status;
   slug: string;
   thumbnailUrl?: string | undefined;
-  durationSeconds?: string | undefined;
+  durationSeconds?: number | undefined;
   path?: string | undefined;
   updatedAt: Date | undefined;
   createdAt: Date | undefined;
@@ -102,215 +102,6 @@ wrappers[".google.protobuf.Timestamp"] = {
     return new Date(message.seconds * 1000 + message.nanos / 1e6);
   },
 } as any;
-
-function createBaseConfirmVideoUploadRequest(): ConfirmVideoUploadRequest {
-  return { videoId: "", fileKey: "", contentType: "", ownerId: "" };
-}
-
-export const ConfirmVideoUploadRequest: MessageFns<ConfirmVideoUploadRequest> = {
-  create<I extends Exact<DeepPartial<ConfirmVideoUploadRequest>, I>>(base?: I): ConfirmVideoUploadRequest {
-    return ConfirmVideoUploadRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ConfirmVideoUploadRequest>, I>>(object: I): ConfirmVideoUploadRequest {
-    const message = createBaseConfirmVideoUploadRequest();
-    message.videoId = object.videoId ?? "";
-    message.fileKey = object.fileKey ?? "";
-    message.contentType = object.contentType ?? "";
-    message.ownerId = object.ownerId ?? "";
-    return message;
-  },
-};
-
-function createBaseConfirmVideoUploadResponse(): ConfirmVideoUploadResponse {
-  return { success: false };
-}
-
-export const ConfirmVideoUploadResponse: MessageFns<ConfirmVideoUploadResponse> = {
-  create<I extends Exact<DeepPartial<ConfirmVideoUploadResponse>, I>>(base?: I): ConfirmVideoUploadResponse {
-    return ConfirmVideoUploadResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ConfirmVideoUploadResponse>, I>>(object: I): ConfirmVideoUploadResponse {
-    const message = createBaseConfirmVideoUploadResponse();
-    message.success = object.success ?? false;
-    return message;
-  },
-};
-
-function createBaseGetAllVideosOwnerRequest(): GetAllVideosOwnerRequest {
-  return { ownerId: "" };
-}
-
-export const GetAllVideosOwnerRequest: MessageFns<GetAllVideosOwnerRequest> = {
-  create<I extends Exact<DeepPartial<GetAllVideosOwnerRequest>, I>>(base?: I): GetAllVideosOwnerRequest {
-    return GetAllVideosOwnerRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetAllVideosOwnerRequest>, I>>(object: I): GetAllVideosOwnerRequest {
-    const message = createBaseGetAllVideosOwnerRequest();
-    message.ownerId = object.ownerId ?? "";
-    return message;
-  },
-};
-
-function createBaseGetAllVideosOwnerResponse(): GetAllVideosOwnerResponse {
-  return { videos: [] };
-}
-
-export const GetAllVideosOwnerResponse: MessageFns<GetAllVideosOwnerResponse> = {
-  create<I extends Exact<DeepPartial<GetAllVideosOwnerResponse>, I>>(base?: I): GetAllVideosOwnerResponse {
-    return GetAllVideosOwnerResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetAllVideosOwnerResponse>, I>>(object: I): GetAllVideosOwnerResponse {
-    const message = createBaseGetAllVideosOwnerResponse();
-    message.videos = object.videos?.map((e) => Video.fromPartial(e)) || [];
-    return message;
-  },
-};
-
-function createBasePublicVideoBySlugRequest(): PublicVideoBySlugRequest {
-  return { slug: "" };
-}
-
-export const PublicVideoBySlugRequest: MessageFns<PublicVideoBySlugRequest> = {
-  create<I extends Exact<DeepPartial<PublicVideoBySlugRequest>, I>>(base?: I): PublicVideoBySlugRequest {
-    return PublicVideoBySlugRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PublicVideoBySlugRequest>, I>>(object: I): PublicVideoBySlugRequest {
-    const message = createBasePublicVideoBySlugRequest();
-    message.slug = object.slug ?? "";
-    return message;
-  },
-};
-
-function createBasePublicVideoBySlugResponce(): PublicVideoBySlugResponce {
-  return { video: undefined };
-}
-
-export const PublicVideoBySlugResponce: MessageFns<PublicVideoBySlugResponce> = {
-  create<I extends Exact<DeepPartial<PublicVideoBySlugResponce>, I>>(base?: I): PublicVideoBySlugResponce {
-    return PublicVideoBySlugResponce.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PublicVideoBySlugResponce>, I>>(object: I): PublicVideoBySlugResponce {
-    const message = createBasePublicVideoBySlugResponce();
-    message.video = (object.video !== undefined && object.video !== null) ? Video.fromPartial(object.video) : undefined;
-    return message;
-  },
-};
-
-function createBaseSettingVideoBySlugRequest(): SettingVideoBySlugRequest {
-  return { slug: "", ownerId: "" };
-}
-
-export const SettingVideoBySlugRequest: MessageFns<SettingVideoBySlugRequest> = {
-  create<I extends Exact<DeepPartial<SettingVideoBySlugRequest>, I>>(base?: I): SettingVideoBySlugRequest {
-    return SettingVideoBySlugRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SettingVideoBySlugRequest>, I>>(object: I): SettingVideoBySlugRequest {
-    const message = createBaseSettingVideoBySlugRequest();
-    message.slug = object.slug ?? "";
-    message.ownerId = object.ownerId ?? "";
-    return message;
-  },
-};
-
-function createBaseSettingVideoBySlugResponce(): SettingVideoBySlugResponce {
-  return { video: undefined };
-}
-
-export const SettingVideoBySlugResponce: MessageFns<SettingVideoBySlugResponce> = {
-  create<I extends Exact<DeepPartial<SettingVideoBySlugResponce>, I>>(base?: I): SettingVideoBySlugResponce {
-    return SettingVideoBySlugResponce.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SettingVideoBySlugResponce>, I>>(object: I): SettingVideoBySlugResponce {
-    const message = createBaseSettingVideoBySlugResponce();
-    message.video = (object.video !== undefined && object.video !== null) ? Video.fromPartial(object.video) : undefined;
-    return message;
-  },
-};
-
-function createBaseUpdateSettingsVideoRequst(): UpdateSettingsVideoRequst {
-  return { slug: "", ownerId: "", video: undefined, updateMask: undefined };
-}
-
-export const UpdateSettingsVideoRequst: MessageFns<UpdateSettingsVideoRequst> = {
-  create<I extends Exact<DeepPartial<UpdateSettingsVideoRequst>, I>>(base?: I): UpdateSettingsVideoRequst {
-    return UpdateSettingsVideoRequst.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UpdateSettingsVideoRequst>, I>>(object: I): UpdateSettingsVideoRequst {
-    const message = createBaseUpdateSettingsVideoRequst();
-    message.slug = object.slug ?? "";
-    message.ownerId = object.ownerId ?? "";
-    message.video = (object.video !== undefined && object.video !== null) ? Video.fromPartial(object.video) : undefined;
-    message.updateMask = (object.updateMask !== undefined && object.updateMask !== null)
-      ? FieldMask.fromPartial(object.updateMask)
-      : undefined;
-    return message;
-  },
-};
-
-function createBaseUpdateSettingsVideoResponse(): UpdateSettingsVideoResponse {
-  return { video: undefined };
-}
-
-export const UpdateSettingsVideoResponse: MessageFns<UpdateSettingsVideoResponse> = {
-  create<I extends Exact<DeepPartial<UpdateSettingsVideoResponse>, I>>(base?: I): UpdateSettingsVideoResponse {
-    return UpdateSettingsVideoResponse.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UpdateSettingsVideoResponse>, I>>(object: I): UpdateSettingsVideoResponse {
-    const message = createBaseUpdateSettingsVideoResponse();
-    message.video = (object.video !== undefined && object.video !== null) ? Video.fromPartial(object.video) : undefined;
-    return message;
-  },
-};
-
-function createBaseFieldMask(): FieldMask {
-  return { paths: [] };
-}
-
-export const FieldMask: MessageFns<FieldMask> = {
-  create<I extends Exact<DeepPartial<FieldMask>, I>>(base?: I): FieldMask {
-    return FieldMask.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<FieldMask>, I>>(object: I): FieldMask {
-    const message = createBaseFieldMask();
-    message.paths = object.paths?.map((e) => e) || [];
-    return message;
-  },
-};
-
-function createBaseVideo(): Video {
-  return {
-    id: "",
-    ownerId: "",
-    title: "",
-    access: Access.PUBLIC,
-    status: Status.PENDING,
-    slug: "",
-    updatedAt: undefined,
-    createdAt: undefined,
-  };
-}
-
-export const Video: MessageFns<Video> = {
-  create<I extends Exact<DeepPartial<Video>, I>>(base?: I): Video {
-    return Video.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Video>, I>>(object: I): Video {
-    const message = createBaseVideo();
-    message.id = object.id ?? "";
-    message.ownerId = object.ownerId ?? "";
-    message.title = object.title ?? "";
-    message.description = object.description ?? undefined;
-    message.access = object.access ?? Access.PUBLIC;
-    message.status = object.status ?? Status.PENDING;
-    message.slug = object.slug ?? "";
-    message.thumbnailUrl = object.thumbnailUrl ?? undefined;
-    message.durationSeconds = object.durationSeconds ?? undefined;
-    message.path = object.path ?? undefined;
-    message.updatedAt = object.updatedAt ?? undefined;
-    message.createdAt = object.createdAt ?? undefined;
-    return message;
-  },
-};
 
 export interface VideoServiceClient {
   confirmVideoUpload(request: ConfirmVideoUploadRequest): Observable<ConfirmVideoUploadResponse>;
@@ -368,20 +159,3 @@ export function VideoServiceControllerMethods() {
 }
 
 export const VIDEO_SERVICE_NAME = "VideoService";
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-export interface MessageFns<T> {
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
-}

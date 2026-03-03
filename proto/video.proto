@@ -52,7 +52,7 @@ message  SettingVideoBySlugResponce{
 message UpdateSettingsVideoRequst {
   string slug = 1;
   string owner_id = 2;
-  Video video = 3;
+  optional Video video = 3;
   FieldMask update_mask = 4;
 }
 
@@ -73,7 +73,7 @@ message Video {
   Status status= 6;
   string slug = 7;
   optional string thumbnail_url = 8;
-  optional string duration_seconds = 9;
+  optional int32 duration_seconds = 9;
   optional string path = 10;
   google.protobuf.Timestamp updated_at = 11;
 	google.protobuf.Timestamp created_at = 12;
