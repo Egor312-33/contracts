@@ -52,7 +52,7 @@ message  SettingVideoBySlugResponce{
 message UpdateSettingsVideoRequst {
   string slug = 1;
   string owner_id = 2;
-  optional Video video = 3;
+  Video video = 3;
   FieldMask update_mask = 4;
 }
 

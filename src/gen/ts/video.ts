@@ -65,7 +65,7 @@ export interface SettingVideoBySlugResponce {
 export interface UpdateSettingsVideoRequst {
   slug: string;
   ownerId: string;
-  video?: Video | undefined;
+  video: Video | undefined;
   updateMask: FieldMask | undefined;
 }
 
