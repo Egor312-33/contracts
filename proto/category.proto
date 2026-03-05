@@ -41,14 +41,14 @@ message Category {
 
 message CreateCategoryTranslation {
   Language language = 1;
-  string name = 2;
+  string title = 2;
   optional string description = 3;
 }
 
 message CategoryTranslation {
   string id = 1;
   Language language = 2;
-  string name = 3;
+  string title = 3;
   optional string description = 4;
 }
 enum Language {

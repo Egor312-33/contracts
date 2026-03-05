@@ -52,14 +52,14 @@ export interface Category {
 
 export interface CreateCategoryTranslation {
   language: Language;
-  name: string;
+  title: string;
   description?: string | undefined;
 }
 
 export interface CategoryTranslation {
   id: string;
   language: Language;
-  name: string;
+  title: string;
   description?: string | undefined;
 }
 
