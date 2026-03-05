@@ -4,7 +4,7 @@ package category.v1;
 
 import "google/protobuf/timestamp.proto";
 
-service CategoryName {
+service CategoryService {
   rpc CheckAvailabilityCategory (CheckAvailabilityCategoryRequest) returns (CheckAvailabilityCategoryResponse);
   rpc CreateCategory (CreateCategoryRequest) returns (CreateCategoryResponse);
 }

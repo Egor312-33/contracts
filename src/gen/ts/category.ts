@@ -68,13 +68,13 @@ wrappers[".google.protobuf.Timestamp"] = {
   },
 } as any;
 
-export interface CategoryNameClient {
+export interface CategoryServiceClient {
   checkAvailabilityCategory(request: CheckAvailabilityCategoryRequest): Observable<CheckAvailabilityCategoryResponse>;
 
   createCategory(request: CreateCategoryRequest): Observable<CreateCategoryResponse>;
 }
 
-export interface CategoryNameController {
+export interface CategoryServiceController {
   checkAvailabilityCategory(
     request: CheckAvailabilityCategoryRequest,
   ):
@@ -87,19 +87,19 @@ export interface CategoryNameController {
   ): Promise<CreateCategoryResponse> | Observable<CreateCategoryResponse> | CreateCategoryResponse;
 }
 
-export function CategoryNameControllerMethods() {
+export function CategoryServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = ["checkAvailabilityCategory", "createCategory"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("CategoryName", method)(constructor.prototype[method], method, descriptor);
+      GrpcMethod("CategoryService", method)(constructor.prototype[method], method, descriptor);
     }
     const grpcStreamMethods: string[] = [];
     for (const method of grpcStreamMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("CategoryName", method)(constructor.prototype[method], method, descriptor);
+      GrpcStreamMethod("CategoryService", method)(constructor.prototype[method], method, descriptor);
     }
   };
 }
 
-export const CATEGORY_NAME_SERVICE_NAME = "CategoryName";
+export const CATEGORY_SERVICE_NAME = "CategoryService";
