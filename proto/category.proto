@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package category.v1;
+
+import "google/protobuf/timestamp.proto";
+
+service CategoryName {
+  rpc CheckAvailabilityCategory (CheckAvailabilityCategoryRequest) returns (CheckAvailabilityCategoryResponse);
+  rpc CreateCategory (CreateCategoryRequest) returns (CreateCategoryResponse);
+}
+
+
+message CheckAvailabilityCategoryRequest{
+    string title = 1;
+}
+
+message CheckAvailabilityCategoryResponse {
+  bool is_available = 1;
+}
+
+message CreateCategoryRequest {
+  repeated TargetType targets = 1;
+  string thumbnail_url = 2; 
+  repeated CategoryTranslation translations = 3;
+}
+
+
+message CreateCategoryResponse {
+  Category category = 1;
+}
+
+message Category {
+  string id = 1;
+  string slug = 2;
+  string thumbnail_url = 3;
+  repeated TargetType targets = 4;
+  repeated CategoryTranslation translations = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message CategoryTranslation {
+  string id = 1;
+  Language language = 2;
+  string name = 3;
+  optional string description = 4;
+}
+enum Language {
+  RU = 0;
+  EN = 1;
+}
+
+enum TargetType {
+  VIDEO = 0;
+}

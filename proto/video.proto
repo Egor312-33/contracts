@@ -10,7 +10,7 @@ service VideoService {
     rpc GetAllVideosOwner (GetAllVideosOwnerRequest) returns (GetAllVideosOwnerResponse);
     rpc PublicVideoBySlug (PublicVideoBySlugRequest) returns (PublicVideoBySlugResponce);
     rpc SettingVideoBySlug (SettingVideoBySlugRequest) returns (SettingVideoBySlugResponce);
-    rpc UpdateSettingsVideo (UpdateSettingsVideoRequst) returns (UpdateSettingsVideoResponse);
+    rpc UpdateSettingsVideo (UpdateSettingsVideoRequest) returns (UpdateSettingsVideoResponse);
 }
 
 message ConfirmVideoUploadRequest {
@@ -49,7 +49,7 @@ message  SettingVideoBySlugResponce{
   Video video =1;
 }
 
-message UpdateSettingsVideoRequst {
+message UpdateSettingsVideoRequest {
   string slug = 1;
   string owner_id = 2;
   Video video = 3;
@@ -64,6 +64,9 @@ message FieldMask {
   repeated string paths = 1;
 }
 
+message CheckAvailabilityCategoryRequest {
+  
+}
 message Video {
 	string id = 1;
 	string owner_id = 2;

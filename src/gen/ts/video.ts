@@ -62,7 +62,7 @@ export interface SettingVideoBySlugResponce {
   video: Video | undefined;
 }
 
-export interface UpdateSettingsVideoRequst {
+export interface UpdateSettingsVideoRequest {
   slug: string;
   ownerId: string;
   video: Video | undefined;
@@ -75,6 +75,9 @@ export interface UpdateSettingsVideoResponse {
 
 export interface FieldMask {
   paths: string[];
+}
+
+export interface CheckAvailabilityCategoryRequest {
 }
 
 export interface Video {
@@ -112,7 +115,7 @@ export interface VideoServiceClient {
 
   settingVideoBySlug(request: SettingVideoBySlugRequest): Observable<SettingVideoBySlugResponce>;
 
-  updateSettingsVideo(request: UpdateSettingsVideoRequst): Observable<UpdateSettingsVideoResponse>;
+  updateSettingsVideo(request: UpdateSettingsVideoRequest): Observable<UpdateSettingsVideoResponse>;
 }
 
 export interface VideoServiceController {
@@ -133,7 +136,7 @@ export interface VideoServiceController {
   ): Promise<SettingVideoBySlugResponce> | Observable<SettingVideoBySlugResponce> | SettingVideoBySlugResponce;
 
   updateSettingsVideo(
-    request: UpdateSettingsVideoRequst,
+    request: UpdateSettingsVideoRequest,
   ): Promise<UpdateSettingsVideoResponse> | Observable<UpdateSettingsVideoResponse> | UpdateSettingsVideoResponse;
 }
 
