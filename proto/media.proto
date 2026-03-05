@@ -47,4 +47,5 @@ message GetVideoUploadTicketResponse {
 enum Folder {
     AVATAR = 0;
     THUMBNAIL = 1;
+    CATEGORY = 2;
 }

@@ -14,6 +14,7 @@ export const protobufPackage = "media.v1";
 export enum Folder {
   AVATAR = "AVATAR",
   THUMBNAIL = "THUMBNAIL",
+  CATEGORY = "CATEGORY",
   UNRECOGNIZED = "UNRECOGNIZED",
 }
 
