@@ -33,7 +33,7 @@ export interface CheckAvailabilityCategoryResponse {
 export interface CreateCategoryRequest {
   targets: TargetType[];
   thumbnailUrl: string;
-  translations: CategoryTranslation[];
+  translations: CreateCategoryTranslation[];
 }
 
 export interface CreateCategoryResponse {
@@ -48,6 +48,12 @@ export interface Category {
   translations: CategoryTranslation[];
   createdAt: Date | undefined;
   updatedAt: Date | undefined;
+}
+
+export interface CreateCategoryTranslation {
+  language: Language;
+  name: string;
+  description?: string | undefined;
 }
 
 export interface CategoryTranslation {
