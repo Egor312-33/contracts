@@ -40,6 +40,33 @@ export interface CreateCategoryResponse {
   category: Category | undefined;
 }
 
+export interface GetAllCategoriesRequest {
+  language: Language;
+}
+
+export interface GetAllCategoriesResponse {
+  categories: Category[];
+}
+
+export interface UpdateCategoryRequest {
+  slug: string;
+  thumbnailUrl?: string | undefined;
+  targets: TargetType[];
+  translations: CreateCategoryTranslation[];
+}
+
+export interface UpdateCategoryResponse {
+  category: Category | undefined;
+}
+
+export interface DeleteCategoryRequest {
+  slug: string;
+}
+
+export interface DeleteCategoryResponse {
+  status: boolean;
+}
+
 export interface Category {
   id: string;
   slug: string;
@@ -78,6 +105,12 @@ export interface CategoryServiceClient {
   checkAvailabilityCategory(request: CheckAvailabilityCategoryRequest): Observable<CheckAvailabilityCategoryResponse>;
 
   createCategory(request: CreateCategoryRequest): Observable<CreateCategoryResponse>;
+
+  getAllCategories(request: GetAllCategoriesRequest): Observable<GetAllCategoriesResponse>;
+
+  updateCategory(request: UpdateCategoryRequest): Observable<UpdateCategoryResponse>;
+
+  deleteCategory(request: DeleteCategoryRequest): Observable<DeleteCategoryResponse>;
 }
 
 export interface CategoryServiceController {
@@ -91,11 +124,29 @@ export interface CategoryServiceController {
   createCategory(
     request: CreateCategoryRequest,
   ): Promise<CreateCategoryResponse> | Observable<CreateCategoryResponse> | CreateCategoryResponse;
+
+  getAllCategories(
+    request: GetAllCategoriesRequest,
+  ): Promise<GetAllCategoriesResponse> | Observable<GetAllCategoriesResponse> | GetAllCategoriesResponse;
+
+  updateCategory(
+    request: UpdateCategoryRequest,
+  ): Promise<UpdateCategoryResponse> | Observable<UpdateCategoryResponse> | UpdateCategoryResponse;
+
+  deleteCategory(
+    request: DeleteCategoryRequest,
+  ): Promise<DeleteCategoryResponse> | Observable<DeleteCategoryResponse> | DeleteCategoryResponse;
 }
 
 export function CategoryServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["checkAvailabilityCategory", "createCategory"];
+    const grpcMethods: string[] = [
+      "checkAvailabilityCategory",
+      "createCategory",
+      "getAllCategories",
+      "updateCategory",
+      "deleteCategory",
+    ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("CategoryService", method)(constructor.prototype[method], method, descriptor);

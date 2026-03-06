@@ -7,6 +7,10 @@ import "google/protobuf/timestamp.proto";
 service CategoryService {
   rpc CheckAvailabilityCategory (CheckAvailabilityCategoryRequest) returns (CheckAvailabilityCategoryResponse);
   rpc CreateCategory (CreateCategoryRequest) returns (CreateCategoryResponse);
+
+  rpc GetAllCategories (GetAllCategoriesRequest) returns (GetAllCategoriesResponse);
+  rpc UpdateCategory (UpdateCategoryRequest) returns (UpdateCategoryResponse);
+  rpc DeleteCategory (DeleteCategoryRequest) returns (DeleteCategoryResponse);
 }
 
 
@@ -24,11 +28,36 @@ message CreateCategoryRequest {
   repeated CreateCategoryTranslation translations = 3;
 }
 
-
 message CreateCategoryResponse {
   Category category = 1;
 }
 
+message GetAllCategoriesRequest {
+  Language language = 1;
+}
+
+message GetAllCategoriesResponse {
+  repeated Category categories = 1;
+}
+
+message UpdateCategoryRequest {
+  string slug = 1;
+  optional string thumbnail_url = 2;
+  repeated TargetType targets = 3;
+  repeated CreateCategoryTranslation translations = 4;
+}
+
+message UpdateCategoryResponse {
+  Category category = 1;
+}
+
+message DeleteCategoryRequest {
+  string slug = 1;
+}
+
+message DeleteCategoryResponse {
+  bool status = 1;
+}
 message Category {
   string id = 1;
   string slug = 2;
