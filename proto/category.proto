@@ -11,6 +11,8 @@ service CategoryService {
   rpc GetAllCategories (GetAllCategoriesRequest) returns (GetAllCategoriesResponse);
   rpc UpdateCategory (UpdateCategoryRequest) returns (UpdateCategoryResponse);
   rpc DeleteCategory (DeleteCategoryRequest) returns (DeleteCategoryResponse);
+
+  rpc GetCategoryWithTranslations (GetCategoryWithTranslationsRequest) returns (GetCategoryWithTranslationsResponse);
 }
 
 
@@ -57,6 +59,14 @@ message DeleteCategoryRequest {
 
 message DeleteCategoryResponse {
   bool status = 1;
+}
+
+message GetCategoryWithTranslationsRequest {
+  string slug = 1;
+}
+
+message GetCategoryWithTranslationsResponse {
+  Category category = 1;
 }
 message Category {
   string id = 1;

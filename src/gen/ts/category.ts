@@ -67,6 +67,14 @@ export interface DeleteCategoryResponse {
   status: boolean;
 }
 
+export interface GetCategoryWithTranslationsRequest {
+  slug: string;
+}
+
+export interface GetCategoryWithTranslationsResponse {
+  category: Category | undefined;
+}
+
 export interface Category {
   id: string;
   slug: string;
@@ -111,6 +119,10 @@ export interface CategoryServiceClient {
   updateCategory(request: UpdateCategoryRequest): Observable<UpdateCategoryResponse>;
 
   deleteCategory(request: DeleteCategoryRequest): Observable<DeleteCategoryResponse>;
+
+  getCategoryWithTranslations(
+    request: GetCategoryWithTranslationsRequest,
+  ): Observable<GetCategoryWithTranslationsResponse>;
 }
 
 export interface CategoryServiceController {
@@ -136,6 +148,13 @@ export interface CategoryServiceController {
   deleteCategory(
     request: DeleteCategoryRequest,
   ): Promise<DeleteCategoryResponse> | Observable<DeleteCategoryResponse> | DeleteCategoryResponse;
+
+  getCategoryWithTranslations(
+    request: GetCategoryWithTranslationsRequest,
+  ):
+    | Promise<GetCategoryWithTranslationsResponse>
+    | Observable<GetCategoryWithTranslationsResponse>
+    | GetCategoryWithTranslationsResponse;
 }
 
 export function CategoryServiceControllerMethods() {
@@ -146,6 +165,7 @@ export function CategoryServiceControllerMethods() {
       "getAllCategories",
       "updateCategory",
       "deleteCategory",
+      "getCategoryWithTranslations",
     ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
