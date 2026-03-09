@@ -40,7 +40,6 @@ message GetAllCategoriesRequest {
 
 message GetAllCategoriesResponse {
   repeated Category categories = 1;
-  common.v1.FieldMask select_mask = 2;
 }
 
 message UpdateCategoryRequest {

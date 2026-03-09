@@ -48,7 +48,6 @@ export interface GetAllCategoriesRequest {
 
 export interface GetAllCategoriesResponse {
   categories: Category[];
-  selectMask: FieldMask | undefined;
 }
 
 export interface UpdateCategoryRequest {
