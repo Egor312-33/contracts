@@ -8,6 +8,7 @@
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
+import { FieldMask as FieldMask1 } from "./common";
 
 export const protobufPackage = "video.v1";
 
@@ -39,6 +40,7 @@ export interface ConfirmVideoUploadResponse {
 
 export interface GetAllVideosOwnerRequest {
   ownerId: string;
+  selectMask: FieldMask1 | undefined;
 }
 
 export interface GetAllVideosOwnerResponse {

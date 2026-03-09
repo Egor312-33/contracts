@@ -35,10 +35,12 @@ message CreateCategoryResponse {
 
 message GetAllCategoriesRequest {
   Language language = 1;
+  common.v1.FieldMask select_mask = 2;
 }
 
 message GetAllCategoriesResponse {
   repeated Category categories = 1;
+  common.v1.FieldMask select_mask = 2;
 }
 
 message UpdateCategoryRequest {

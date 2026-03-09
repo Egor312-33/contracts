@@ -43,10 +43,12 @@ export interface CreateCategoryResponse {
 
 export interface GetAllCategoriesRequest {
   language: Language;
+  selectMask: FieldMask | undefined;
 }
 
 export interface GetAllCategoriesResponse {
   categories: Category[];
+  selectMask: FieldMask | undefined;
 }
 
 export interface UpdateCategoryRequest {

@@ -3,6 +3,7 @@ syntax = "proto3";
 package video.v1;
 
 import "google/protobuf/timestamp.proto";
+import "common.proto";
 
 service VideoService {
     rpc ConfirmVideoUpload (ConfirmVideoUploadRequest) returns (ConfirmVideoUploadResponse);
@@ -26,6 +27,7 @@ message ConfirmVideoUploadResponse {
 
 message GetAllVideosOwnerRequest {
   string owner_id = 1;
+  common.v1.FieldMask select_mask = 2;
 }
 
 message GetAllVideosOwnerResponse {
