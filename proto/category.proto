@@ -3,7 +3,7 @@ syntax = "proto3";
 package category.v1;
 
 import "google/protobuf/timestamp.proto";
-
+import "common.proto";
 service CategoryService {
   rpc CheckAvailabilityCategory (CheckAvailabilityCategoryRequest) returns (CheckAvailabilityCategoryResponse);
   rpc CreateCategory (CreateCategoryRequest) returns (CreateCategoryResponse);
@@ -14,7 +14,6 @@ service CategoryService {
 
   rpc GetCategoryWithTranslations (GetCategoryWithTranslationsRequest) returns (GetCategoryWithTranslationsResponse);
 }
-
 
 message CheckAvailabilityCategoryRequest{
     string title = 1;
@@ -63,6 +62,7 @@ message DeleteCategoryResponse {
 
 message GetCategoryWithTranslationsRequest {
   string slug = 1;
+  common.v1.FieldMask select_mask = 2;
 }
 
 message GetCategoryWithTranslationsResponse {

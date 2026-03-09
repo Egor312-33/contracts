@@ -8,6 +8,7 @@
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
+import { FieldMask } from "./common";
 
 export const protobufPackage = "category.v1";
 
@@ -69,6 +70,7 @@ export interface DeleteCategoryResponse {
 
 export interface GetCategoryWithTranslationsRequest {
   slug: string;
+  selectMask: FieldMask | undefined;
 }
 
 export interface GetCategoryWithTranslationsResponse {
