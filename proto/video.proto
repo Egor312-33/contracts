@@ -9,8 +9,8 @@ service VideoService {
     rpc ConfirmVideoUpload (ConfirmVideoUploadRequest) returns (ConfirmVideoUploadResponse);
     
     rpc GetAllVideosOwner (GetAllVideosOwnerRequest) returns (GetAllVideosOwnerResponse);
-    rpc PublicVideoBySlug (PublicVideoBySlugRequest) returns (PublicVideoBySlugResponce);
-    rpc SettingVideoBySlug (SettingVideoBySlugRequest) returns (SettingVideoBySlugResponce);
+    rpc GetPublicVideoBySlug (GetPublicVideoBySlugRequest) returns (GetPublicVideoBySlugResponce);
+    rpc GetSettingVideoBySlug (GetSettingVideoBySlugRequest) returns (GetSettingVideoBySlugResponce);
     rpc UpdateSettingsVideo (UpdateSettingsVideoRequest) returns (UpdateSettingsVideoResponse);
 }
 
@@ -34,20 +34,22 @@ message GetAllVideosOwnerResponse {
   repeated Video videos = 1;
 }
 
-message PublicVideoBySlugRequest {
+message GetPublicVideoBySlugRequest {
   string slug = 1;
+  common.v1.FieldMask select_mask = 2;
 }
 
-message PublicVideoBySlugResponce {
+message GetPublicVideoBySlugResponce {
   Video video = 1;
 }
 
-message SettingVideoBySlugRequest {
+message GetSettingVideoBySlugRequest {
   string slug = 1;
   string owner_id= 2; 
+  common.v1.FieldMask select_mask = 3;
 }
 
-message  SettingVideoBySlugResponce{
+message  GetSettingVideoBySlugResponce{
   Video video =1;
 }
 
@@ -55,7 +57,7 @@ message UpdateSettingsVideoRequest {
   string slug = 1;
   string owner_id = 2;
   Video video = 3;
-  FieldMask update_mask = 4;
+  common.v1.FieldMask update_mask = 4;
   repeated string category_ids = 5;
 }
 
@@ -63,13 +65,6 @@ message UpdateSettingsVideoResponse {
   Video video = 1;
 }
 
-message FieldMask {
-  repeated string paths = 1;
-}
-
-message CheckAvailabilityCategoryRequest {
-  
-}
 message Video {
 	string id = 1;
 	string owner_id = 2;

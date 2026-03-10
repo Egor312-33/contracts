@@ -8,7 +8,7 @@
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
-import { FieldMask as FieldMask1 } from "./common";
+import { FieldMask } from "./common";
 
 export const protobufPackage = "video.v1";
 
@@ -40,27 +40,29 @@ export interface ConfirmVideoUploadResponse {
 
 export interface GetAllVideosOwnerRequest {
   ownerId: string;
-  selectMask: FieldMask1 | undefined;
+  selectMask: FieldMask | undefined;
 }
 
 export interface GetAllVideosOwnerResponse {
   videos: Video[];
 }
 
-export interface PublicVideoBySlugRequest {
+export interface GetPublicVideoBySlugRequest {
   slug: string;
+  selectMask: FieldMask | undefined;
 }
 
-export interface PublicVideoBySlugResponce {
+export interface GetPublicVideoBySlugResponce {
   video: Video | undefined;
 }
 
-export interface SettingVideoBySlugRequest {
+export interface GetSettingVideoBySlugRequest {
   slug: string;
   ownerId: string;
+  selectMask: FieldMask | undefined;
 }
 
-export interface SettingVideoBySlugResponce {
+export interface GetSettingVideoBySlugResponce {
   video: Video | undefined;
 }
 
@@ -74,13 +76,6 @@ export interface UpdateSettingsVideoRequest {
 
 export interface UpdateSettingsVideoResponse {
   video: Video | undefined;
-}
-
-export interface FieldMask {
-  paths: string[];
-}
-
-export interface CheckAvailabilityCategoryRequest {
 }
 
 export interface Video {
@@ -119,9 +114,9 @@ export interface VideoServiceClient {
 
   getAllVideosOwner(request: GetAllVideosOwnerRequest): Observable<GetAllVideosOwnerResponse>;
 
-  publicVideoBySlug(request: PublicVideoBySlugRequest): Observable<PublicVideoBySlugResponce>;
+  getPublicVideoBySlug(request: GetPublicVideoBySlugRequest): Observable<GetPublicVideoBySlugResponce>;
 
-  settingVideoBySlug(request: SettingVideoBySlugRequest): Observable<SettingVideoBySlugResponce>;
+  getSettingVideoBySlug(request: GetSettingVideoBySlugRequest): Observable<GetSettingVideoBySlugResponce>;
 
   updateSettingsVideo(request: UpdateSettingsVideoRequest): Observable<UpdateSettingsVideoResponse>;
 }
@@ -135,13 +130,13 @@ export interface VideoServiceController {
     request: GetAllVideosOwnerRequest,
   ): Promise<GetAllVideosOwnerResponse> | Observable<GetAllVideosOwnerResponse> | GetAllVideosOwnerResponse;
 
-  publicVideoBySlug(
-    request: PublicVideoBySlugRequest,
-  ): Promise<PublicVideoBySlugResponce> | Observable<PublicVideoBySlugResponce> | PublicVideoBySlugResponce;
+  getPublicVideoBySlug(
+    request: GetPublicVideoBySlugRequest,
+  ): Promise<GetPublicVideoBySlugResponce> | Observable<GetPublicVideoBySlugResponce> | GetPublicVideoBySlugResponce;
 
-  settingVideoBySlug(
-    request: SettingVideoBySlugRequest,
-  ): Promise<SettingVideoBySlugResponce> | Observable<SettingVideoBySlugResponce> | SettingVideoBySlugResponce;
+  getSettingVideoBySlug(
+    request: GetSettingVideoBySlugRequest,
+  ): Promise<GetSettingVideoBySlugResponce> | Observable<GetSettingVideoBySlugResponce> | GetSettingVideoBySlugResponce;
 
   updateSettingsVideo(
     request: UpdateSettingsVideoRequest,
@@ -153,8 +148,8 @@ export function VideoServiceControllerMethods() {
     const grpcMethods: string[] = [
       "confirmVideoUpload",
       "getAllVideosOwner",
-      "publicVideoBySlug",
-      "settingVideoBySlug",
+      "getPublicVideoBySlug",
+      "getSettingVideoBySlug",
       "updateSettingsVideo",
     ];
     for (const method of grpcMethods) {
