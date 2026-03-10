@@ -56,6 +56,7 @@ message UpdateSettingsVideoRequest {
   string owner_id = 2;
   Video video = 3;
   FieldMask update_mask = 4;
+  repeated string category_ids = 5;
 }
 
 message UpdateSettingsVideoResponse {

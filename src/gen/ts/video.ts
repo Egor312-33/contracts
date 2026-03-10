@@ -69,6 +69,7 @@ export interface UpdateSettingsVideoRequest {
   ownerId: string;
   video: Video | undefined;
   updateMask: FieldMask | undefined;
+  categoryIds: string[];
 }
 
 export interface UpdateSettingsVideoResponse {
