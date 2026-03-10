@@ -96,6 +96,11 @@ export interface Video {
   path?: string | undefined;
   updatedAt: Date | undefined;
   createdAt: Date | undefined;
+  categories: VideoCategory[];
+}
+
+export interface VideoCategory {
+  id: string;
 }
 
 export const VIDEO_V1_PACKAGE_NAME = "video.v1";

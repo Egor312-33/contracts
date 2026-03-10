@@ -83,6 +83,11 @@ message Video {
   optional string path = 10;
   google.protobuf.Timestamp updated_at = 11;
 	google.protobuf.Timestamp created_at = 12;
+  repeated VideoCategory categories = 13;
+}
+
+message VideoCategory {
+  string id = 1;
 }
 
 enum Access {
