@@ -41,12 +41,13 @@ export interface CreateCategoryResponse {
   category: Category | undefined;
 }
 
-export interface GetAllCategoriesRequest {
+export interface GetCategoriesRequest {
   language: Language;
   selectMask: FieldMask | undefined;
+  targets: TargetType[];
 }
 
-export interface GetAllCategoriesResponse {
+export interface GetCategoriesResponse {
   categories: Category[];
 }
 
@@ -117,7 +118,7 @@ export interface CategoryServiceClient {
 
   createCategory(request: CreateCategoryRequest): Observable<CreateCategoryResponse>;
 
-  getAllCategories(request: GetAllCategoriesRequest): Observable<GetAllCategoriesResponse>;
+  getCategories(request: GetCategoriesRequest): Observable<GetCategoriesResponse>;
 
   updateCategory(request: UpdateCategoryRequest): Observable<UpdateCategoryResponse>;
 
@@ -140,9 +141,9 @@ export interface CategoryServiceController {
     request: CreateCategoryRequest,
   ): Promise<CreateCategoryResponse> | Observable<CreateCategoryResponse> | CreateCategoryResponse;
 
-  getAllCategories(
-    request: GetAllCategoriesRequest,
-  ): Promise<GetAllCategoriesResponse> | Observable<GetAllCategoriesResponse> | GetAllCategoriesResponse;
+  getCategories(
+    request: GetCategoriesRequest,
+  ): Promise<GetCategoriesResponse> | Observable<GetCategoriesResponse> | GetCategoriesResponse;
 
   updateCategory(
     request: UpdateCategoryRequest,
@@ -165,7 +166,7 @@ export function CategoryServiceControllerMethods() {
     const grpcMethods: string[] = [
       "checkAvailabilityCategory",
       "createCategory",
-      "getAllCategories",
+      "getCategories",
       "updateCategory",
       "deleteCategory",
       "getCategoryWithTranslations",

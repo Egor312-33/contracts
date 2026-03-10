@@ -8,7 +8,7 @@ service CategoryService {
   rpc CheckAvailabilityCategory (CheckAvailabilityCategoryRequest) returns (CheckAvailabilityCategoryResponse);
   rpc CreateCategory (CreateCategoryRequest) returns (CreateCategoryResponse);
 
-  rpc GetAllCategories (GetAllCategoriesRequest) returns (GetAllCategoriesResponse);
+  rpc GetCategories (GetCategoriesRequest) returns (GetCategoriesResponse);
   rpc UpdateCategory (UpdateCategoryRequest) returns (UpdateCategoryResponse);
   rpc DeleteCategory (DeleteCategoryRequest) returns (DeleteCategoryResponse);
 
@@ -33,12 +33,13 @@ message CreateCategoryResponse {
   Category category = 1;
 }
 
-message GetAllCategoriesRequest {
+message GetCategoriesRequest {
   Language language = 1;
   common.v1.FieldMask select_mask = 2;
+  repeated TargetType targets = 3;
 }
 
-message GetAllCategoriesResponse {
+message GetCategoriesResponse {
   repeated Category categories = 1;
 }
 
