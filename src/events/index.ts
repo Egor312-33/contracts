@@ -3,3 +3,4 @@ export * from "./media";
 export * from "./users";
 export * from "./video";
 export * from "./messages";
+export * from "./chats";
