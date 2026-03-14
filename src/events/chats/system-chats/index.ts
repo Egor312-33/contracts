@@ -1,1 +1,1 @@
-export * from "./create-system-chats.interface";
+export * from "./notification-login.interface";
