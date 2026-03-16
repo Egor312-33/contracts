@@ -19,16 +19,17 @@ message GetUserMessagesRequest {
 message GetUserMessagesResponse {
   string chat_id = 1;
   string encrypted_chat_key = 2; 
-  repeated SystemMessageResponse messages = 3;
+  repeated SystemMessage messages = 3;
 }
-message SystemMessageResponse {
+message SystemMessage {
   string id = 1;
-  string sender_id = 2;
-  string content = 3; 
-  string auth_tag = 4; 
-  string initial_vector = 5; 
-  bool is_edited = 6;
-  bool is_deleted = 7;
-  google.protobuf.Timestamp created_at = 8;
-  google.protobuf.Timestamp updated_at = 9;
+  string chat_id = 2;
+  string sender_id = 3;
+  string content = 4;
+  string auth_tag = 5;
+  string initial_vector = 6;
+  bool is_edited = 7;
+  bool is_deleted = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
 }

@@ -21,11 +21,12 @@ export interface GetUserMessagesRequest {
 export interface GetUserMessagesResponse {
   chatId: string;
   encryptedChatKey: string;
-  messages: SystemMessageResponse[];
+  messages: SystemMessage[];
 }
 
-export interface SystemMessageResponse {
+export interface SystemMessage {
   id: string;
+  chatId: string;
   senderId: string;
   content: string;
   authTag: string;
