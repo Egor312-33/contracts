@@ -4,7 +4,7 @@ package system.chats.v1;
 
 import "google/protobuf/timestamp.proto";
 
-import "../common.proto";
+import "common.proto";
 
 service SystemChatsService {
   rpc GetUserMessages (GetUserMessagesRequest) returns (GetUserMessagesResponse);
