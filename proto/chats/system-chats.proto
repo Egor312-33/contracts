@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package system.chats.v1;
+
+import "google/protobuf/timestamp.proto";
+
+import "../common.proto";
+
+service SystemChatsService {
+  rpc GetUserMessages (GetUserMessagesRequest) returns (GetUserMessagesResponse);
+}
+
+message GetUserMessagesRequest {
+  string user_id = 1;
+  string public_key = 2; 
+  common.v1.FieldMask select_mask = 3;
+}
+
+message GetUserMessagesResponse {
+  string chat_id = 1;
+  string encrypted_chat_key = 2; 
+  repeated SystemMessageResponse messages = 3;
+}
+message SystemMessageResponse {
+  string id = 1;
+  string sender_id = 2;
+  string content = 3; 
+  string auth_tag = 4; 
+  string initial_vector = 5; 
+  bool is_edited = 6;
+  bool is_deleted = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
