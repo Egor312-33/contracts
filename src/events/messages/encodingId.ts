@@ -11,6 +11,7 @@ export enum EncodingId {
   "preview_720p" = "preview_720p",
   "preview_1080p" = "preview_1080p",
   "thumbnails" = "thumbnails",
+  "poster" = "poster",
 }
 
 export function isFullVideoFormat(encodingId: EncodingId): boolean {
@@ -34,4 +35,8 @@ export function isPreviewFormat(encodingId: EncodingId): boolean {
 
 export function isThumbnailsFormat(encodingId: EncodingId): boolean {
   return encodingId === EncodingId.thumbnails;
+}
+
+export function isPosterFormat(encodingId: EncodingId): boolean {
+  return encodingId === EncodingId.poster;
 }
