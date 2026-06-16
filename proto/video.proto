@@ -7,11 +7,13 @@ import "common.proto";
 
 service VideoService {
     rpc ConfirmVideoUpload (ConfirmVideoUploadRequest) returns (ConfirmVideoUploadResponse);
-    
+
     rpc GetAllVideosOwner (GetAllVideosOwnerRequest) returns (GetAllVideosOwnerResponse);
     rpc GetPublicVideoBySlug (GetPublicVideoBySlugRequest) returns (GetPublicVideoBySlugResponce);
     rpc GetSettingVideoBySlug (GetSettingVideoBySlugRequest) returns (GetSettingVideoBySlugResponce);
     rpc UpdateSettingsVideo (UpdateSettingsVideoRequest) returns (UpdateSettingsVideoResponse);
+
+    rpc FindAllFilterVideos (FindAllFilterVideosRequest) returns (FindAllFilterVideosResponse);
 }
 
 message ConfirmVideoUploadRequest {
@@ -63,6 +65,17 @@ message UpdateSettingsVideoRequest {
 
 message UpdateSettingsVideoResponse {
   Video video = 1;
+}
+
+message FindAllFilterVideosRequest {
+  optional int32 take = 1;
+  optional int32 skip = 2;
+  optional string search_term = 3;
+  common.v1.FieldMask select_mask = 4;
+}
+
+message FindAllFilterVideosResponse {
+  repeated Video videos = 1;
 }
 
 message Video {

@@ -78,6 +78,17 @@ export interface UpdateSettingsVideoResponse {
   video: Video | undefined;
 }
 
+export interface FindAllFilterVideosRequest {
+  take?: number | undefined;
+  skip?: number | undefined;
+  searchTerm?: string | undefined;
+  selectMask: FieldMask | undefined;
+}
+
+export interface FindAllFilterVideosResponse {
+  videos: Video[];
+}
+
 export interface Video {
   id: string;
   ownerId: string;
@@ -119,6 +130,8 @@ export interface VideoServiceClient {
   getSettingVideoBySlug(request: GetSettingVideoBySlugRequest): Observable<GetSettingVideoBySlugResponce>;
 
   updateSettingsVideo(request: UpdateSettingsVideoRequest): Observable<UpdateSettingsVideoResponse>;
+
+  findAllFilterVideos(request: FindAllFilterVideosRequest): Observable<FindAllFilterVideosResponse>;
 }
 
 export interface VideoServiceController {
@@ -141,6 +154,10 @@ export interface VideoServiceController {
   updateSettingsVideo(
     request: UpdateSettingsVideoRequest,
   ): Promise<UpdateSettingsVideoResponse> | Observable<UpdateSettingsVideoResponse> | UpdateSettingsVideoResponse;
+
+  findAllFilterVideos(
+    request: FindAllFilterVideosRequest,
+  ): Promise<FindAllFilterVideosResponse> | Observable<FindAllFilterVideosResponse> | FindAllFilterVideosResponse;
 }
 
 export function VideoServiceControllerMethods() {
@@ -151,6 +168,7 @@ export function VideoServiceControllerMethods() {
       "getPublicVideoBySlug",
       "getSettingVideoBySlug",
       "updateSettingsVideo",
+      "findAllFilterVideos",
     ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
