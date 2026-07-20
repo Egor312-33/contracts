@@ -10,10 +10,14 @@ import { Observable } from "rxjs";
 
 export const protobufPackage = "auth.v1";
 
-export enum AuthType {
-  PHONE = "PHONE",
-  EMAIL = "EMAIL",
-  UNRECOGNIZED = "UNRECOGNIZED",
+export const AuthType = { PHONE: "PHONE", EMAIL: "EMAIL", UNRECOGNIZED: "UNRECOGNIZED" } as const;
+
+export type AuthType = typeof AuthType[keyof typeof AuthType];
+
+export namespace AuthType {
+  export type PHONE = typeof AuthType.PHONE;
+  export type EMAIL = typeof AuthType.EMAIL;
+  export type UNRECOGNIZED = typeof AuthType.UNRECOGNIZED;
 }
 
 export interface SendOtpRequest {

@@ -12,15 +12,23 @@ import { FieldMask } from "./common";
 
 export const protobufPackage = "category.v1";
 
-export enum Language {
-  RU = "RU",
-  EN = "EN",
-  UNRECOGNIZED = "UNRECOGNIZED",
+export const Language = { RU: "RU", EN: "EN", UNRECOGNIZED: "UNRECOGNIZED" } as const;
+
+export type Language = typeof Language[keyof typeof Language];
+
+export namespace Language {
+  export type RU = typeof Language.RU;
+  export type EN = typeof Language.EN;
+  export type UNRECOGNIZED = typeof Language.UNRECOGNIZED;
 }
 
-export enum TargetType {
-  VIDEO = "VIDEO",
-  UNRECOGNIZED = "UNRECOGNIZED",
+export const TargetType = { VIDEO: "VIDEO", UNRECOGNIZED: "UNRECOGNIZED" } as const;
+
+export type TargetType = typeof TargetType[keyof typeof TargetType];
+
+export namespace TargetType {
+  export type VIDEO = typeof TargetType.VIDEO;
+  export type UNRECOGNIZED = typeof TargetType.UNRECOGNIZED;
 }
 
 export interface CheckAvailabilityCategoryRequest {

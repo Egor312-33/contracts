@@ -12,19 +12,33 @@ import { FieldMask } from "./common";
 
 export const protobufPackage = "video.v1";
 
-export enum Access {
-  PUBLIC = "PUBLIC",
-  PRIVATE = "PRIVATE",
-  BYLINK = "BYLINK",
-  UNRECOGNIZED = "UNRECOGNIZED",
+export const Access = { PUBLIC: "PUBLIC", PRIVATE: "PRIVATE", BYLINK: "BYLINK", UNRECOGNIZED: "UNRECOGNIZED" } as const;
+
+export type Access = typeof Access[keyof typeof Access];
+
+export namespace Access {
+  export type PUBLIC = typeof Access.PUBLIC;
+  export type PRIVATE = typeof Access.PRIVATE;
+  export type BYLINK = typeof Access.BYLINK;
+  export type UNRECOGNIZED = typeof Access.UNRECOGNIZED;
 }
 
-export enum Status {
-  PENDING = "PENDING",
-  PROCESSING = "PROCESSING",
-  READY = "READY",
-  FAILED = "FAILED",
-  UNRECOGNIZED = "UNRECOGNIZED",
+export const Status = {
+  PENDING: "PENDING",
+  PROCESSING: "PROCESSING",
+  READY: "READY",
+  FAILED: "FAILED",
+  UNRECOGNIZED: "UNRECOGNIZED",
+} as const;
+
+export type Status = typeof Status[keyof typeof Status];
+
+export namespace Status {
+  export type PENDING = typeof Status.PENDING;
+  export type PROCESSING = typeof Status.PROCESSING;
+  export type READY = typeof Status.READY;
+  export type FAILED = typeof Status.FAILED;
+  export type UNRECOGNIZED = typeof Status.UNRECOGNIZED;
 }
 
 export interface ConfirmVideoUploadRequest {

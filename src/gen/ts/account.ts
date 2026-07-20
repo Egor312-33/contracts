@@ -11,10 +11,14 @@ import { Observable } from "rxjs";
 
 export const protobufPackage = "account.v1";
 
-export enum Role {
-  USER = "USER",
-  ADMIN = "ADMIN",
-  UNRECOGNIZED = "UNRECOGNIZED",
+export const Role = { USER: "USER", ADMIN: "ADMIN", UNRECOGNIZED: "UNRECOGNIZED" } as const;
+
+export type Role = typeof Role[keyof typeof Role];
+
+export namespace Role {
+  export type USER = typeof Role.USER;
+  export type ADMIN = typeof Role.ADMIN;
+  export type UNRECOGNIZED = typeof Role.UNRECOGNIZED;
 }
 
 export interface GetAccountRequest {

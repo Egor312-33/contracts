@@ -11,11 +11,20 @@ import { Observable } from "rxjs";
 
 export const protobufPackage = "media.v1";
 
-export enum Folder {
-  AVATAR = "AVATAR",
-  THUMBNAIL = "THUMBNAIL",
-  CATEGORY = "CATEGORY",
-  UNRECOGNIZED = "UNRECOGNIZED",
+export const Folder = {
+  AVATAR: "AVATAR",
+  THUMBNAIL: "THUMBNAIL",
+  CATEGORY: "CATEGORY",
+  UNRECOGNIZED: "UNRECOGNIZED",
+} as const;
+
+export type Folder = typeof Folder[keyof typeof Folder];
+
+export namespace Folder {
+  export type AVATAR = typeof Folder.AVATAR;
+  export type THUMBNAIL = typeof Folder.THUMBNAIL;
+  export type CATEGORY = typeof Folder.CATEGORY;
+  export type UNRECOGNIZED = typeof Folder.UNRECOGNIZED;
 }
 
 export interface UploadImageRequest {
