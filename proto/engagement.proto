@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package engagement.v1;
+
+service EngagementService {
+    rpc GetEngagement (GetEngagementRequest) returns (GetEngagementResponse);
+}
+
+message GetEngagementRequest {
+    // Полиморфный таргет: 'photo' сейчас, далее 'epoch_photo', 'squad_photo' и т.д. (CMS)
+    string target_type = 1;
+    int64 target_id = 2;
+    // Пустая строка = анонимный запрос (без моей реакции)
+    string user_id = 3;
+}
+
+message GetEngagementResponse {
+    int64 rating_count = 1;
+    double rating_avg = 2;
+    int64 likes_count = 3;
+    optional int32 my_rating = 4;
+    bool my_liked = 5;
+}
