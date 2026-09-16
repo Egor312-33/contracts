@@ -10,5 +10,6 @@ export const PROTO_PATHS = {
   VIDEO: join(ROOT_PATH, "video.proto"),
   CATEGORY: join(ROOT_PATH, "category.proto"),
   SYSTEM_CHATS: join(ROOT_PATH, "system-chats.proto"),
-  ENGAGEMENT: join(ROOT_PATH, "engagement.proto")
+  ENGAGEMENT: join(ROOT_PATH, "engagement.proto"),
+  COMMENTS: join(ROOT_PATH, "comments.proto")
 } as const;
