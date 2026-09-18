@@ -6,7 +6,6 @@
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
-import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 
 export const protobufPackage = "comments.v1";
@@ -37,23 +36,13 @@ export interface CommentItem {
   id: string;
   userId: string;
   text: string;
-  createdAt:
-    | Date
-    | undefined;
+  /** ISO-8601 UTC (строка — без protobuf-конверсий Date между сервисами) */
+  createdAt: string;
   /** true, если комментарий принадлежит user_id из запроса */
   isMine: boolean;
 }
 
 export const COMMENTS_V1_PACKAGE_NAME = "comments.v1";
-
-wrappers[".google.protobuf.Timestamp"] = {
-  fromObject(value: Date) {
-    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
-  },
-  toObject(message: { seconds: number; nanos: number }) {
-    return new Date(message.seconds * 1000 + message.nanos / 1e6);
-  },
-} as any;
 
 export interface CommentServiceClient {
   /** Чтение комментариев полиморфного таргета (сейчас фото стримеров из CMS) */
