@@ -3,21 +3,33 @@ syntax = "proto3";
 package engagement.v1;
 
 service EngagementService {
-    rpc GetEngagement (GetEngagementRequest) returns (GetEngagementResponse);
+    // Рейтинг (оценки 1-5) и лайки — независимые данные: два RPC.
+    // Чтение напрямую, запись через RMQ (продакшен-паттерн «больших сайтов»).
+    rpc GetPhotoRating (GetPhotoRatingRequest) returns (GetPhotoRatingResponse);
+    rpc GetPhotoLikes (GetPhotoLikesRequest) returns (GetPhotoLikesResponse);
 }
 
-message GetEngagementRequest {
+message GetPhotoRatingRequest {
     // Полиморфный таргет: 'photo' сейчас, далее 'epoch_photo', 'squad_photo' и т.д. (CMS)
     string target_type = 1;
     int64 target_id = 2;
-    // Пустая строка = анонимный запрос (без моей реакции)
+    // Пустая строка = анонимный запрос (my_rating не заполняется)
     string user_id = 3;
 }
 
-message GetEngagementResponse {
+message GetPhotoRatingResponse {
     int64 rating_count = 1;
     double rating_avg = 2;
-    int64 likes_count = 3;
-    optional int32 my_rating = 4;
-    bool my_liked = 5;
+    optional int32 my_rating = 3;
+}
+
+message GetPhotoLikesRequest {
+    string target_type = 1;
+    int64 target_id = 2;
+    string user_id = 3;
+}
+
+message GetPhotoLikesResponse {
+    int64 likes_count = 1;
+    bool my_liked = 2;
 }

@@ -10,37 +10,62 @@ import { Observable } from "rxjs";
 
 export const protobufPackage = "engagement.v1";
 
-export interface GetEngagementRequest {
+export interface GetPhotoRatingRequest {
   /** Полиморфный таргет: 'photo' сейчас, далее 'epoch_photo', 'squad_photo' и т.д. (CMS) */
   targetType: string;
   targetId: number;
-  /** Пустая строка = анонимный запрос (без моей реакции) */
+  /** Пустая строка = анонимный запрос (my_rating не заполняется) */
   userId: string;
 }
 
-export interface GetEngagementResponse {
+export interface GetPhotoRatingResponse {
   ratingCount: number;
   ratingAvg: number;
-  likesCount: number;
   myRating?: number | undefined;
+}
+
+export interface GetPhotoLikesRequest {
+  targetType: string;
+  targetId: number;
+  userId: string;
+}
+
+export interface GetPhotoLikesResponse {
+  likesCount: number;
   myLiked: boolean;
 }
 
 export const ENGAGEMENT_V1_PACKAGE_NAME = "engagement.v1";
 
 export interface EngagementServiceClient {
-  getEngagement(request: GetEngagementRequest): Observable<GetEngagementResponse>;
+  /**
+   * Рейтинг (оценки 1-5) и лайки — независимые данные: два RPC.
+   * Чтение напрямую, запись через RMQ (продакшен-паттерн «больших сайтов»).
+   */
+
+  getPhotoRating(request: GetPhotoRatingRequest): Observable<GetPhotoRatingResponse>;
+
+  getPhotoLikes(request: GetPhotoLikesRequest): Observable<GetPhotoLikesResponse>;
 }
 
 export interface EngagementServiceController {
-  getEngagement(
-    request: GetEngagementRequest,
-  ): Promise<GetEngagementResponse> | Observable<GetEngagementResponse> | GetEngagementResponse;
+  /**
+   * Рейтинг (оценки 1-5) и лайки — независимые данные: два RPC.
+   * Чтение напрямую, запись через RMQ (продакшен-паттерн «больших сайтов»).
+   */
+
+  getPhotoRating(
+    request: GetPhotoRatingRequest,
+  ): Promise<GetPhotoRatingResponse> | Observable<GetPhotoRatingResponse> | GetPhotoRatingResponse;
+
+  getPhotoLikes(
+    request: GetPhotoLikesRequest,
+  ): Promise<GetPhotoLikesResponse> | Observable<GetPhotoLikesResponse> | GetPhotoLikesResponse;
 }
 
 export function EngagementServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["getEngagement"];
+    const grpcMethods: string[] = ["getPhotoRating", "getPhotoLikes"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("EngagementService", method)(constructor.prototype[method], method, descriptor);
