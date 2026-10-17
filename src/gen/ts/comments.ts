@@ -6,53 +6,65 @@
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 
 export const protobufPackage = "comments.v1";
 
+export const TargetType = {
+  CMS_STREAMER_PHOTO: "CMS_STREAMER_PHOTO",
+  CMS_EPOCH_PHOTO: "CMS_EPOCH_PHOTO",
+  CMS_SQUAD_PHOTO: "CMS_SQUAD_PHOTO",
+  UNRECOGNIZED: "UNRECOGNIZED",
+} as const;
+
+export type TargetType = typeof TargetType[keyof typeof TargetType];
+
+export namespace TargetType {
+  export type CMS_STREAMER_PHOTO = typeof TargetType.CMS_STREAMER_PHOTO;
+  export type CMS_EPOCH_PHOTO = typeof TargetType.CMS_EPOCH_PHOTO;
+  export type CMS_SQUAD_PHOTO = typeof TargetType.CMS_SQUAD_PHOTO;
+  export type UNRECOGNIZED = typeof TargetType.UNRECOGNIZED;
+}
+
 export interface GetCommentsRequest {
-  /**
-   * Полиморфный таргет: 'cms_streamer_photo' сейчас, далее 'cms_epoch_photo',
-   * 'cms_squad_photo' и т.д. (единая таблица комментариев)
-   */
-  targetType: string;
-  targetId: number;
-  /** Пустая строка = анонимный запрос (is_mine не заполняется) */
+  targetType: TargetType;
+  targetId: string;
   userId: string;
-  /** 1-индексированная страница; 0 → 1 */
-  page: number;
-  /** 0 → 50 (максимум 100) */
-  limit: number;
+  pageSize: number;
+  pageToken: string;
 }
 
 export interface GetCommentsResponse {
-  comments: CommentItem[];
-  total: number;
-  page: number;
-  limit: number;
+  comments: Comment[];
+  nextPageToken: string;
 }
 
-export interface CommentItem {
+export interface Comment {
   id: string;
   userId: string;
   text: string;
-  /** ISO-8601 UTC (строка — без protobuf-конверсий Date между сервисами) */
-  createdAt: string;
-  /** true, если комментарий принадлежит user_id из запроса */
+  parentId: string;
   isMine: boolean;
+  createdAt: Date | undefined;
 }
 
 export const COMMENTS_V1_PACKAGE_NAME = "comments.v1";
 
-export interface CommentServiceClient {
-  /** Чтение комментариев полиморфного таргета (сейчас фото стримеров из CMS) */
+wrappers[".google.protobuf.Timestamp"] = {
+  fromObject(value: Date) {
+    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
+  },
+  toObject(message: { seconds: number; nanos: number }) {
+    return new Date(message.seconds * 1000 + message.nanos / 1e6);
+  },
+} as any;
 
+export interface CommentServiceClient {
   getComments(request: GetCommentsRequest): Observable<GetCommentsResponse>;
 }
 
 export interface CommentServiceController {
-  /** Чтение комментариев полиморфного таргета (сейчас фото стримеров из CMS) */
-
   getComments(
     request: GetCommentsRequest,
   ): Promise<GetCommentsResponse> | Observable<GetCommentsResponse> | GetCommentsResponse;

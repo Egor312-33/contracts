@@ -2,37 +2,36 @@ syntax = "proto3";
 
 package comments.v1;
 
+import "google/protobuf/timestamp.proto";
+
 service CommentService {
-    // Чтение комментариев полиморфного таргета (сейчас фото стримеров из CMS)
-    rpc GetComments (GetCommentsRequest) returns (GetCommentsResponse);
+	rpc GetComments (GetCommentsRequest) returns (GetCommentsResponse);
+}
+
+enum TargetType {
+	CMS_STREAMER_PHOTO = 0;
+	CMS_EPOCH_PHOTO = 1;
+	CMS_SQUAD_PHOTO = 2;
 }
 
 message GetCommentsRequest {
-    // Полиморфный таргет: 'cms_streamer_photo' сейчас, далее 'cms_epoch_photo',
-    // 'cms_squad_photo' и т.д. (единая таблица комментариев)
-    string target_type = 1;
-    int64 target_id = 2;
-    // Пустая строка = анонимный запрос (is_mine не заполняется)
-    string user_id = 3;
-    // 1-индексированная страница; 0 → 1
-    int32 page = 4;
-    // 0 → 50 (максимум 100)
-    int32 limit = 5;
+	TargetType target_type = 1;
+	string target_id = 2;
+	string user_id = 3;
+	int32 page_size = 4;
+	string page_token = 5;
 }
 
 message GetCommentsResponse {
-    repeated CommentItem comments = 1;
-    int64 total = 2;
-    int32 page = 3;
-    int32 limit = 4;
+	repeated Comment comments = 1;
+	string next_page_token = 2;
 }
 
-message CommentItem {
-    string id = 1;
-    string user_id = 2;
-    string text = 3;
-    // ISO-8601 UTC (строка — без protobuf-конверсий Date между сервисами)
-    string created_at = 4;
-    // true, если комментарий принадлежит user_id из запроса
-    bool is_mine = 5;
+message Comment {
+	string id = 1;
+	string user_id = 2;
+	string text = 3;
+	string parent_id = 4;
+	bool is_mine = 5;
+	google.protobuf.Timestamp created_at = 6;
 }
