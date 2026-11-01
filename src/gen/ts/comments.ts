@@ -40,6 +40,20 @@ export interface GetCommentsResponse {
   nextPageToken: string;
 }
 
+export interface CommentCreatedEvent {
+  commentId: string;
+  targetType: TargetType;
+  targetId: string;
+  userId: string;
+  text: string;
+}
+
+export interface CommentDeletedEvent {
+  commentId: string;
+  targetType: TargetType;
+  userId: string;
+}
+
 export interface Comment {
   id: string;
   userId: string;

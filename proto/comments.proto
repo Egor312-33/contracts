@@ -27,6 +27,20 @@ message GetCommentsResponse {
 	string next_page_token = 2;
 }
 
+message CommentCreatedEvent {
+	string comment_id = 1; 
+	TargetType target_type = 2;
+	string target_id = 3;
+	string user_id = 4; 
+	string text = 5;
+}
+
+message CommentDeletedEvent {
+	string comment_id = 1;
+	TargetType target_type = 2;
+	string user_id = 3;
+}
+
 message Comment {
 	string id = 1;
 	string user_id = 2;
