@@ -121,6 +121,67 @@ wrappers[".google.protobuf.Timestamp"] = {
   },
 } as any;
 
+export const CheckAvailabilityCategoryRequest: MessageFns<
+  CheckAvailabilityCategoryRequest,
+  "category.v1.CheckAvailabilityCategoryRequest"
+> = { $type: "category.v1.CheckAvailabilityCategoryRequest" as const };
+
+export const CheckAvailabilityCategoryResponse: MessageFns<
+  CheckAvailabilityCategoryResponse,
+  "category.v1.CheckAvailabilityCategoryResponse"
+> = { $type: "category.v1.CheckAvailabilityCategoryResponse" as const };
+
+export const CreateCategoryRequest: MessageFns<CreateCategoryRequest, "category.v1.CreateCategoryRequest"> = {
+  $type: "category.v1.CreateCategoryRequest" as const,
+};
+
+export const CreateCategoryResponse: MessageFns<CreateCategoryResponse, "category.v1.CreateCategoryResponse"> = {
+  $type: "category.v1.CreateCategoryResponse" as const,
+};
+
+export const GetCategoriesRequest: MessageFns<GetCategoriesRequest, "category.v1.GetCategoriesRequest"> = {
+  $type: "category.v1.GetCategoriesRequest" as const,
+};
+
+export const GetCategoriesResponse: MessageFns<GetCategoriesResponse, "category.v1.GetCategoriesResponse"> = {
+  $type: "category.v1.GetCategoriesResponse" as const,
+};
+
+export const UpdateCategoryRequest: MessageFns<UpdateCategoryRequest, "category.v1.UpdateCategoryRequest"> = {
+  $type: "category.v1.UpdateCategoryRequest" as const,
+};
+
+export const UpdateCategoryResponse: MessageFns<UpdateCategoryResponse, "category.v1.UpdateCategoryResponse"> = {
+  $type: "category.v1.UpdateCategoryResponse" as const,
+};
+
+export const DeleteCategoryRequest: MessageFns<DeleteCategoryRequest, "category.v1.DeleteCategoryRequest"> = {
+  $type: "category.v1.DeleteCategoryRequest" as const,
+};
+
+export const DeleteCategoryResponse: MessageFns<DeleteCategoryResponse, "category.v1.DeleteCategoryResponse"> = {
+  $type: "category.v1.DeleteCategoryResponse" as const,
+};
+
+export const GetCategoryWithTranslationsRequest: MessageFns<
+  GetCategoryWithTranslationsRequest,
+  "category.v1.GetCategoryWithTranslationsRequest"
+> = { $type: "category.v1.GetCategoryWithTranslationsRequest" as const };
+
+export const GetCategoryWithTranslationsResponse: MessageFns<
+  GetCategoryWithTranslationsResponse,
+  "category.v1.GetCategoryWithTranslationsResponse"
+> = { $type: "category.v1.GetCategoryWithTranslationsResponse" as const };
+
+export const Category: MessageFns<Category, "category.v1.Category"> = { $type: "category.v1.Category" as const };
+
+export const CreateCategoryTranslation: MessageFns<CreateCategoryTranslation, "category.v1.CreateCategoryTranslation"> =
+  { $type: "category.v1.CreateCategoryTranslation" as const };
+
+export const CategoryTranslation: MessageFns<CategoryTranslation, "category.v1.CategoryTranslation"> = {
+  $type: "category.v1.CategoryTranslation" as const,
+};
+
 export interface CategoryServiceClient {
   checkAvailabilityCategory(request: CheckAvailabilityCategoryRequest): Observable<CheckAvailabilityCategoryResponse>;
 
@@ -194,3 +255,7 @@ export function CategoryServiceControllerMethods() {
 }
 
 export const CATEGORY_SERVICE_NAME = "CategoryService";
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

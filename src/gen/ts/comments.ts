@@ -74,6 +74,24 @@ wrappers[".google.protobuf.Timestamp"] = {
   },
 } as any;
 
+export const GetCommentsRequest: MessageFns<GetCommentsRequest, "comments.v1.GetCommentsRequest"> = {
+  $type: "comments.v1.GetCommentsRequest" as const,
+};
+
+export const GetCommentsResponse: MessageFns<GetCommentsResponse, "comments.v1.GetCommentsResponse"> = {
+  $type: "comments.v1.GetCommentsResponse" as const,
+};
+
+export const CommentCreatedEvent: MessageFns<CommentCreatedEvent, "comments.v1.CommentCreatedEvent"> = {
+  $type: "comments.v1.CommentCreatedEvent" as const,
+};
+
+export const CommentDeletedEvent: MessageFns<CommentDeletedEvent, "comments.v1.CommentDeletedEvent"> = {
+  $type: "comments.v1.CommentDeletedEvent" as const,
+};
+
+export const Comment: MessageFns<Comment, "comments.v1.Comment"> = { $type: "comments.v1.Comment" as const };
+
 export interface CommentServiceClient {
   getComments(request: GetCommentsRequest): Observable<GetCommentsResponse>;
 }
@@ -102,3 +120,7 @@ export function CommentServiceControllerMethods() {
 }
 
 export const COMMENT_SERVICE_NAME = "CommentService";
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

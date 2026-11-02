@@ -51,6 +51,30 @@ export interface RefreshResponse {
 
 export const AUTH_V1_PACKAGE_NAME = "auth.v1";
 
+export const SendOtpRequest: MessageFns<SendOtpRequest, "auth.v1.SendOtpRequest"> = {
+  $type: "auth.v1.SendOtpRequest" as const,
+};
+
+export const SendOtpResponse: MessageFns<SendOtpResponse, "auth.v1.SendOtpResponse"> = {
+  $type: "auth.v1.SendOtpResponse" as const,
+};
+
+export const VerifyOtpRequest: MessageFns<VerifyOtpRequest, "auth.v1.VerifyOtpRequest"> = {
+  $type: "auth.v1.VerifyOtpRequest" as const,
+};
+
+export const VerifyOtpResponse: MessageFns<VerifyOtpResponse, "auth.v1.VerifyOtpResponse"> = {
+  $type: "auth.v1.VerifyOtpResponse" as const,
+};
+
+export const RefreshRequest: MessageFns<RefreshRequest, "auth.v1.RefreshRequest"> = {
+  $type: "auth.v1.RefreshRequest" as const,
+};
+
+export const RefreshResponse: MessageFns<RefreshResponse, "auth.v1.RefreshResponse"> = {
+  $type: "auth.v1.RefreshResponse" as const,
+};
+
 export interface AuthServiceClient {
   sendOtp(request: SendOtpRequest): Observable<SendOtpResponse>;
 
@@ -85,3 +109,7 @@ export function AuthServiceControllerMethods() {
 }
 
 export const AUTH_SERVICE_NAME = "AuthService";
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

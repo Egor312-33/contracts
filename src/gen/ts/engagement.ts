@@ -37,6 +37,22 @@ export interface GetPhotoLikesResponse {
 
 export const ENGAGEMENT_V1_PACKAGE_NAME = "engagement.v1";
 
+export const GetPhotoRatingRequest: MessageFns<GetPhotoRatingRequest, "engagement.v1.GetPhotoRatingRequest"> = {
+  $type: "engagement.v1.GetPhotoRatingRequest" as const,
+};
+
+export const GetPhotoRatingResponse: MessageFns<GetPhotoRatingResponse, "engagement.v1.GetPhotoRatingResponse"> = {
+  $type: "engagement.v1.GetPhotoRatingResponse" as const,
+};
+
+export const GetPhotoLikesRequest: MessageFns<GetPhotoLikesRequest, "engagement.v1.GetPhotoLikesRequest"> = {
+  $type: "engagement.v1.GetPhotoLikesRequest" as const,
+};
+
+export const GetPhotoLikesResponse: MessageFns<GetPhotoLikesResponse, "engagement.v1.GetPhotoLikesResponse"> = {
+  $type: "engagement.v1.GetPhotoLikesResponse" as const,
+};
+
 export interface EngagementServiceClient {
   /**
    * Рейтинг (оценки 1-5) и лайки — независимые данные: два RPC.
@@ -81,3 +97,7 @@ export function EngagementServiceControllerMethods() {
 }
 
 export const ENGAGEMENT_SERVICE_NAME = "EngagementService";
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

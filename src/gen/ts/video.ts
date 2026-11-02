@@ -134,6 +134,63 @@ wrappers[".google.protobuf.Timestamp"] = {
   },
 } as any;
 
+export const ConfirmVideoUploadRequest: MessageFns<ConfirmVideoUploadRequest, "video.v1.ConfirmVideoUploadRequest"> = {
+  $type: "video.v1.ConfirmVideoUploadRequest" as const,
+};
+
+export const ConfirmVideoUploadResponse: MessageFns<ConfirmVideoUploadResponse, "video.v1.ConfirmVideoUploadResponse"> =
+  { $type: "video.v1.ConfirmVideoUploadResponse" as const };
+
+export const GetAllVideosOwnerRequest: MessageFns<GetAllVideosOwnerRequest, "video.v1.GetAllVideosOwnerRequest"> = {
+  $type: "video.v1.GetAllVideosOwnerRequest" as const,
+};
+
+export const GetAllVideosOwnerResponse: MessageFns<GetAllVideosOwnerResponse, "video.v1.GetAllVideosOwnerResponse"> = {
+  $type: "video.v1.GetAllVideosOwnerResponse" as const,
+};
+
+export const GetPublicVideoBySlugRequest: MessageFns<
+  GetPublicVideoBySlugRequest,
+  "video.v1.GetPublicVideoBySlugRequest"
+> = { $type: "video.v1.GetPublicVideoBySlugRequest" as const };
+
+export const GetPublicVideoBySlugResponce: MessageFns<
+  GetPublicVideoBySlugResponce,
+  "video.v1.GetPublicVideoBySlugResponce"
+> = { $type: "video.v1.GetPublicVideoBySlugResponce" as const };
+
+export const GetSettingVideoBySlugRequest: MessageFns<
+  GetSettingVideoBySlugRequest,
+  "video.v1.GetSettingVideoBySlugRequest"
+> = { $type: "video.v1.GetSettingVideoBySlugRequest" as const };
+
+export const GetSettingVideoBySlugResponce: MessageFns<
+  GetSettingVideoBySlugResponce,
+  "video.v1.GetSettingVideoBySlugResponce"
+> = { $type: "video.v1.GetSettingVideoBySlugResponce" as const };
+
+export const UpdateSettingsVideoRequest: MessageFns<UpdateSettingsVideoRequest, "video.v1.UpdateSettingsVideoRequest"> =
+  { $type: "video.v1.UpdateSettingsVideoRequest" as const };
+
+export const UpdateSettingsVideoResponse: MessageFns<
+  UpdateSettingsVideoResponse,
+  "video.v1.UpdateSettingsVideoResponse"
+> = { $type: "video.v1.UpdateSettingsVideoResponse" as const };
+
+export const FindAllFilterVideosRequest: MessageFns<FindAllFilterVideosRequest, "video.v1.FindAllFilterVideosRequest"> =
+  { $type: "video.v1.FindAllFilterVideosRequest" as const };
+
+export const FindAllFilterVideosResponse: MessageFns<
+  FindAllFilterVideosResponse,
+  "video.v1.FindAllFilterVideosResponse"
+> = { $type: "video.v1.FindAllFilterVideosResponse" as const };
+
+export const Video: MessageFns<Video, "video.v1.Video"> = { $type: "video.v1.Video" as const };
+
+export const VideoCategory: MessageFns<VideoCategory, "video.v1.VideoCategory"> = {
+  $type: "video.v1.VideoCategory" as const,
+};
+
 export interface VideoServiceClient {
   confirmVideoUpload(request: ConfirmVideoUploadRequest): Observable<ConfirmVideoUploadResponse>;
 
@@ -199,3 +256,7 @@ export function VideoServiceControllerMethods() {
 }
 
 export const VIDEO_SERVICE_NAME = "VideoService";
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

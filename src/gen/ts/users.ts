@@ -74,6 +74,48 @@ wrappers[".google.protobuf.Timestamp"] = {
   },
 } as any;
 
+export const GetMeRequest: MessageFns<GetMeRequest, "users.v1.GetMeRequest"> = {
+  $type: "users.v1.GetMeRequest" as const,
+};
+
+export const GetMeResponse: MessageFns<GetMeResponse, "users.v1.GetMeResponse"> = {
+  $type: "users.v1.GetMeResponse" as const,
+};
+
+export const GetUsersRequest: MessageFns<GetUsersRequest, "users.v1.GetUsersRequest"> = {
+  $type: "users.v1.GetUsersRequest" as const,
+};
+
+export const GetUsersResponse: MessageFns<GetUsersResponse, "users.v1.GetUsersResponse"> = {
+  $type: "users.v1.GetUsersResponse" as const,
+};
+
+export const CreateUserRequest: MessageFns<CreateUserRequest, "users.v1.CreateUserRequest"> = {
+  $type: "users.v1.CreateUserRequest" as const,
+};
+
+export const CreateUserResponse: MessageFns<CreateUserResponse, "users.v1.CreateUserResponse"> = {
+  $type: "users.v1.CreateUserResponse" as const,
+};
+
+export const PatchUserRequest: MessageFns<PatchUserRequest, "users.v1.PatchUserRequest"> = {
+  $type: "users.v1.PatchUserRequest" as const,
+};
+
+export const PatchUserResponse: MessageFns<PatchUserResponse, "users.v1.PatchUserResponse"> = {
+  $type: "users.v1.PatchUserResponse" as const,
+};
+
+export const DeleteAvatarProfileRequest: MessageFns<DeleteAvatarProfileRequest, "users.v1.DeleteAvatarProfileRequest"> =
+  { $type: "users.v1.DeleteAvatarProfileRequest" as const };
+
+export const DeleteAvatarProfileResponse: MessageFns<
+  DeleteAvatarProfileResponse,
+  "users.v1.DeleteAvatarProfileResponse"
+> = { $type: "users.v1.DeleteAvatarProfileResponse" as const };
+
+export const User: MessageFns<User, "users.v1.User"> = { $type: "users.v1.User" as const };
+
 export interface UsersServiceClient {
   getMe(request: GetMeRequest): Observable<GetMeResponse>;
 
@@ -120,3 +162,7 @@ export function UsersServiceControllerMethods() {
 }
 
 export const USERS_SERVICE_NAME = "UsersService";
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

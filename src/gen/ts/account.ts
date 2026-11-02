@@ -98,6 +98,56 @@ wrappers[".google.protobuf.Timestamp"] = {
   },
 } as any;
 
+export const GetAccountRequest: MessageFns<GetAccountRequest, "account.v1.GetAccountRequest"> = {
+  $type: "account.v1.GetAccountRequest" as const,
+};
+
+export const GetAccountResponse: MessageFns<GetAccountResponse, "account.v1.GetAccountResponse"> = {
+  $type: "account.v1.GetAccountResponse" as const,
+};
+
+export const InitEmailChangeRequest: MessageFns<InitEmailChangeRequest, "account.v1.InitEmailChangeRequest"> = {
+  $type: "account.v1.InitEmailChangeRequest" as const,
+};
+
+export const InitEmailChangeResponse: MessageFns<InitEmailChangeResponse, "account.v1.InitEmailChangeResponse"> = {
+  $type: "account.v1.InitEmailChangeResponse" as const,
+};
+
+export const ConfirmEmailChangeRequest: MessageFns<ConfirmEmailChangeRequest, "account.v1.ConfirmEmailChangeRequest"> =
+  { $type: "account.v1.ConfirmEmailChangeRequest" as const };
+
+export const ConfirmEmailChangeResponse: MessageFns<
+  ConfirmEmailChangeResponse,
+  "account.v1.ConfirmEmailChangeResponse"
+> = { $type: "account.v1.ConfirmEmailChangeResponse" as const };
+
+export const InitPhoneChangeRequest: MessageFns<InitPhoneChangeRequest, "account.v1.InitPhoneChangeRequest"> = {
+  $type: "account.v1.InitPhoneChangeRequest" as const,
+};
+
+export const InitPhoneChangeResponse: MessageFns<InitPhoneChangeResponse, "account.v1.InitPhoneChangeResponse"> = {
+  $type: "account.v1.InitPhoneChangeResponse" as const,
+};
+
+export const ConfirmPhoneChangeRequest: MessageFns<ConfirmPhoneChangeRequest, "account.v1.ConfirmPhoneChangeRequest"> =
+  { $type: "account.v1.ConfirmPhoneChangeRequest" as const };
+
+export const ConfirmPhoneChangeResponse: MessageFns<
+  ConfirmPhoneChangeResponse,
+  "account.v1.ConfirmPhoneChangeResponse"
+> = { $type: "account.v1.ConfirmPhoneChangeResponse" as const };
+
+export const GetAccountsRequest: MessageFns<GetAccountsRequest, "account.v1.GetAccountsRequest"> = {
+  $type: "account.v1.GetAccountsRequest" as const,
+};
+
+export const GetAccountsResponse: MessageFns<GetAccountsResponse, "account.v1.GetAccountsResponse"> = {
+  $type: "account.v1.GetAccountsResponse" as const,
+};
+
+export const Account: MessageFns<Account, "account.v1.Account"> = { $type: "account.v1.Account" as const };
+
 export interface AccountServiceClient {
   getAccount(request: GetAccountRequest): Observable<GetAccountResponse>;
 
@@ -163,3 +213,7 @@ export function AccountServiceControllerMethods() {
 }
 
 export const ACCOUNT_SERVICE_NAME = "AccountService";
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

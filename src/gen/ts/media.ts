@@ -73,6 +73,32 @@ wrappers[".google.protobuf.Timestamp"] = {
   },
 } as any;
 
+export const UploadImageRequest: MessageFns<UploadImageRequest, "media.v1.UploadImageRequest"> = {
+  $type: "media.v1.UploadImageRequest" as const,
+};
+
+export const UploadImageResponse: MessageFns<UploadImageResponse, "media.v1.UploadImageResponse"> = {
+  $type: "media.v1.UploadImageResponse" as const,
+};
+
+export const GetImageRequest: MessageFns<GetImageRequest, "media.v1.GetImageRequest"> = {
+  $type: "media.v1.GetImageRequest" as const,
+};
+
+export const GetImageResponse: MessageFns<GetImageResponse, "media.v1.GetImageResponse"> = {
+  $type: "media.v1.GetImageResponse" as const,
+};
+
+export const GetVideoUploadTicketRequest: MessageFns<
+  GetVideoUploadTicketRequest,
+  "media.v1.GetVideoUploadTicketRequest"
+> = { $type: "media.v1.GetVideoUploadTicketRequest" as const };
+
+export const GetVideoUploadTicketResponse: MessageFns<
+  GetVideoUploadTicketResponse,
+  "media.v1.GetVideoUploadTicketResponse"
+> = { $type: "media.v1.GetVideoUploadTicketResponse" as const };
+
 export interface MediaServiceClient {
   uploadImage(request: UploadImageRequest): Observable<UploadImageResponse>;
 
@@ -111,3 +137,7 @@ export function MediaServiceControllerMethods() {
 }
 
 export const MEDIA_SERVICE_NAME = "MediaService";
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

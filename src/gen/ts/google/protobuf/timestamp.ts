@@ -117,3 +117,11 @@ export interface Timestamp {
 }
 
 export const GOOGLE_PROTOBUF_PACKAGE_NAME = "google.protobuf";
+
+export const Timestamp: MessageFns<Timestamp, "google.protobuf.Timestamp"> = {
+  $type: "google.protobuf.Timestamp" as const,
+};
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

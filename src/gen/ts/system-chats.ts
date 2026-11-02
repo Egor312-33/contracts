@@ -48,6 +48,18 @@ wrappers[".google.protobuf.Timestamp"] = {
   },
 } as any;
 
+export const GetUserMessagesRequest: MessageFns<GetUserMessagesRequest, "system.chats.v1.GetUserMessagesRequest"> = {
+  $type: "system.chats.v1.GetUserMessagesRequest" as const,
+};
+
+export const GetUserMessagesResponse: MessageFns<GetUserMessagesResponse, "system.chats.v1.GetUserMessagesResponse"> = {
+  $type: "system.chats.v1.GetUserMessagesResponse" as const,
+};
+
+export const SystemMessage: MessageFns<SystemMessage, "system.chats.v1.SystemMessage"> = {
+  $type: "system.chats.v1.SystemMessage" as const,
+};
+
 export interface SystemChatsServiceClient {
   getUserMessages(request: GetUserMessagesRequest): Observable<GetUserMessagesResponse>;
 }
@@ -76,3 +88,7 @@ export function SystemChatsServiceControllerMethods() {
 }
 
 export const SYSTEM_CHATS_SERVICE_NAME = "SystemChatsService";
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}

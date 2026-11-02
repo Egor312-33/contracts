@@ -13,3 +13,9 @@ export interface FieldMask {
 }
 
 export const COMMON_V1_PACKAGE_NAME = "common.v1";
+
+export const FieldMask: MessageFns<FieldMask, "common.v1.FieldMask"> = { $type: "common.v1.FieldMask" as const };
+
+export interface MessageFns<T, V extends string> {
+  readonly $type: V;
+}
