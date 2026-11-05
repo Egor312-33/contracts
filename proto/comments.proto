@@ -6,6 +6,8 @@ import "google/protobuf/timestamp.proto";
 
 service CommentService {
 	rpc GetComments (GetCommentsRequest) returns (GetCommentsResponse);
+	rpc CreateComment (CreateCommentRequest) returns (Comment);
+	rpc DeleteComment (DeleteCommentRequest) returns (DeleteCommentResponse);
 }
 
 enum TargetType {
@@ -27,18 +29,40 @@ message GetCommentsResponse {
 	string next_page_token = 2;
 }
 
-message CommentCreatedEvent {
-	string comment_id = 1; 
+message CreateCommentRequest {
+	string comment_id = 1;
 	TargetType target_type = 2;
 	string target_id = 3;
-	string user_id = 4; 
+	string user_id = 4;
 	string text = 5;
+	string parent_id = 6;
+}
+
+message DeleteCommentRequest {
+	string comment_id = 1;
+	TargetType target_type = 2;
+	string user_id = 3;
+}
+
+message DeleteCommentResponse {
+	bool deleted = 1;
+}
+
+message CommentCreatedEvent {
+	string comment_id = 1;
+	TargetType target_type = 2;
+	string target_id = 3;
+	string user_id = 4;
+	string text = 5;
+	string parent_id = 6;
+	google.protobuf.Timestamp created_at = 7;
 }
 
 message CommentDeletedEvent {
 	string comment_id = 1;
 	TargetType target_type = 2;
 	string user_id = 3;
+	string target_id = 4;
 }
 
 message Comment {
