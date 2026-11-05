@@ -40,18 +40,40 @@ export interface GetCommentsResponse {
   nextPageToken: string;
 }
 
+export interface CreateCommentRequest {
+  commentId: string;
+  targetType: TargetType;
+  targetId: string;
+  userId: string;
+  text: string;
+  parentId: string;
+}
+
+export interface DeleteCommentRequest {
+  commentId: string;
+  targetType: TargetType;
+  userId: string;
+}
+
+export interface DeleteCommentResponse {
+  deleted: boolean;
+}
+
 export interface CommentCreatedEvent {
   commentId: string;
   targetType: TargetType;
   targetId: string;
   userId: string;
   text: string;
+  parentId: string;
+  createdAt: Date | undefined;
 }
 
 export interface CommentDeletedEvent {
   commentId: string;
   targetType: TargetType;
   userId: string;
+  targetId: string;
 }
 
 export interface Comment {
@@ -82,6 +104,18 @@ export const GetCommentsResponse: MessageFns<GetCommentsResponse, "comments.v1.G
   $type: "comments.v1.GetCommentsResponse" as const,
 };
 
+export const CreateCommentRequest: MessageFns<CreateCommentRequest, "comments.v1.CreateCommentRequest"> = {
+  $type: "comments.v1.CreateCommentRequest" as const,
+};
+
+export const DeleteCommentRequest: MessageFns<DeleteCommentRequest, "comments.v1.DeleteCommentRequest"> = {
+  $type: "comments.v1.DeleteCommentRequest" as const,
+};
+
+export const DeleteCommentResponse: MessageFns<DeleteCommentResponse, "comments.v1.DeleteCommentResponse"> = {
+  $type: "comments.v1.DeleteCommentResponse" as const,
+};
+
 export const CommentCreatedEvent: MessageFns<CommentCreatedEvent, "comments.v1.CommentCreatedEvent"> = {
   $type: "comments.v1.CommentCreatedEvent" as const,
 };
@@ -94,17 +128,27 @@ export const Comment: MessageFns<Comment, "comments.v1.Comment"> = { $type: "com
 
 export interface CommentServiceClient {
   getComments(request: GetCommentsRequest): Observable<GetCommentsResponse>;
+
+  createComment(request: CreateCommentRequest): Observable<Comment>;
+
+  deleteComment(request: DeleteCommentRequest): Observable<DeleteCommentResponse>;
 }
 
 export interface CommentServiceController {
   getComments(
     request: GetCommentsRequest,
   ): Promise<GetCommentsResponse> | Observable<GetCommentsResponse> | GetCommentsResponse;
+
+  createComment(request: CreateCommentRequest): Promise<Comment> | Observable<Comment> | Comment;
+
+  deleteComment(
+    request: DeleteCommentRequest,
+  ): Promise<DeleteCommentResponse> | Observable<DeleteCommentResponse> | DeleteCommentResponse;
 }
 
 export function CommentServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["getComments"];
+    const grpcMethods: string[] = ["getComments", "createComment", "deleteComment"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("CommentService", method)(constructor.prototype[method], method, descriptor);
